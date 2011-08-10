@@ -19,8 +19,7 @@ public class GetTraffic implements Command {
 	
 	@Override
 	public void execute() {
-//		Polyline line = decoder.polyline("}||rGixjb@K|C~@jIFhASf@B`@FLVFf@tA`F`Kr@|DtAjN@r@Ov@cCbECrARfAjEoApBBdAZpAbA~@lAr@|Af@zBbAdJNb@nKdxAdE~a@NvGvDrGzl@``A`Td_@lC|H|Rrq@@b@OvAoBlNsKlMJ\\JjCFrJLtCo@zWwQiE~B~Y");
-		Polyline line = Polyline.a480;
+		Polyline line = Polyline.grenobleSud;
 		Model.model().polyline = line;
 		map.invalidate();
 		Log.d(tag, "get traffic...");

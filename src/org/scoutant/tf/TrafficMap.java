@@ -2,7 +2,7 @@ package org.scoutant.tf;
 
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.model.LatLng;
-import org.scoutant.tf.overlay.MarkersOverlay;
+import org.scoutant.tf.overlay.PolylineOverlay;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import com.google.android.maps.MapView;
 public class TrafficMap extends MapActivity {
 	private MapView mapView;
 	private MapController mapController;
-	public MarkersOverlay markers;
 	
 	static final int MENU_VIEW = 0;
 	static final int MENU_SEARCH = 1;
@@ -34,6 +33,7 @@ public class TrafficMap extends MapActivity {
         mapController.setCenter( new LatLng(45.1794,5.7316) );
         mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
+//		mapView.getOverlays().add( new PolylineOverlay( ));
 
 		new GetTraffic(mapView).execute();
 	  }

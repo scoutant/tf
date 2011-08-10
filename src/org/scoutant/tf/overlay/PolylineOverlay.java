@@ -17,48 +17,39 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
 
-public class TrafficOverlay extends Overlay {
+public class PolylineOverlay extends Overlay {
 	
 	public static final int green = Color.rgb( 51, 187, 0);
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
 
-	public TrafficOverlay() {
+	public PolylineOverlay() {
 		paint.setStyle(Style.STROKE);
-		paint.setStrokeWidth(5.5f);
+		paint.setStrokeWidth(3.5f);
 		paint.setColor( Color.MAGENTA);
 	}
 	
 	private void drawTracks(Canvas canvas, MapView map) {
 		Polyline track = Model.model().polyline;
 		if (track==null || track.size()==0) return;
+//		Log.d(tag, "drawing # of points " + track.size());
 		Projection pj = map.getProjection();
 		Rect viewRect = MapUtils.toRectx2(map);
 		Point last = null;
-		Point lastNormal=null;
 		int q=0;
-		
+
 		for (LatLng f : track.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
 				Point p = new Point();
 				pj.toPixels(f, p);
 				if (last!=null) {
-					Point o = MapUtils.offset(lastNormal, p, 6);
-					if (o!=null) {
-						lastNormal = new Point(p);
-						p.offset(o.x, o.y);
-//						paint.setColor( q%2==0 ? green : Color.RED);
-						paint.setColor( green);
-						q++;
-						canvas.drawLine(last.x, last.y, p.x, p.y, paint);
-						last = p;
-					}
-				} else {
-					lastNormal = new Point(p);
-					last = p;
+					paint.setColor( q%2==0 ? green : Color.RED);
+					q++;
+					canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 				}
+				last = p;
 			}
 		}
 	}
