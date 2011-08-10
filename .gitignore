@@ -1,0 +1,10 @@
+.project
+.classpath
+.settings
+bin
+gen
+*.properties
+libs
+*~
+*.cfg
+*.svn*

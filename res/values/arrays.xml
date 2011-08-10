@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="distNames">
+    <item>100 m</item>
+    <item>500 m</item>
+    <item>1 km</item>
+  </string-array>
+  <string-array name="distValues">
+    <item>100</item>
+    <item>500</item>
+    <item>1000</item>
+  </string-array>
+</resources>
+  
