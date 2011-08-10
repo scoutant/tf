@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scoutant.tf.model.LatLng;
+import org.scoutant.tf.model.Polyline;
 
 
 /**
@@ -42,5 +43,10 @@ public class PolylineDecoder {
 		}
 		return track;
 	}
+	
+	public Polyline polyline(String encoded) {
+		return new Polyline( decode(encoded));
+	}
+	
 	
 }

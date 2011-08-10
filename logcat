@@ -1,0 +1,2 @@
+adb logcat -c;
+adb logcat *:S util:D test:D command:D activity:D overlay:D sc:D model:D http:D overlay:D

@@ -12,9 +12,7 @@ public class Fix extends Location implements Serializable {
 		super( location);
 		setLatitude( Math.floor(this.getLatitude()*1E6)/ 1E6) ;
 		setLongitude( Math.floor(this.getLatitude()*1E6)/ 1E6) ;
-		// TODO regarder accuracy et si pas assez précis alors passer à null!
 	}
-
 	
 	public Fix(double lat, double lng) {
 		super (new Location("gps"));
@@ -23,7 +21,7 @@ public class Fix extends Location implements Serializable {
 	}
 
 	public Fix(LatLng p) {
-		this( p.getLat(), p.getLng());
+		this( p.lat(), p.lng());
 	}
 	
 	

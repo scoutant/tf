@@ -16,6 +16,6 @@ public class LatLng extends GeoPoint implements Serializable{
 		this(location.getLatitude(), location.getLongitude());
 	}
 	
-	public double getLat() { return new Double(getLatitudeE6()/1E6); }
-	public double getLng() { return new Double(getLongitudeE6()/1E6); }
+	public double lat() { return new Double(getLatitudeE6()/1E6); }
+	public double lng() { return new Double(getLongitudeE6()/1E6); }
 }
