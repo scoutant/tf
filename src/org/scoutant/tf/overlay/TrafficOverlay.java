@@ -1,5 +1,6 @@
 package org.scoutant.tf.overlay;
 
+import org.scoutant.tf.R;
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Polyline;
@@ -7,25 +8,29 @@ import org.scoutant.tf.util.MapUtils;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
 
 public class TrafficOverlay extends Overlay {
+	
+	public static final int green = Color.rgb( 51, 187, 0);
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
 
-	public TrafficOverlay(Context context) {
+	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(3.5f);
-		paint.setColor(0xFFCC0099);
+		paint.setColor( Color.MAGENTA);
 	}
 	
 	private void drawTracks(Canvas canvas, MapView map) {
@@ -41,8 +46,7 @@ public class TrafficOverlay extends Overlay {
 				Point p = new Point();
 				pj.toPixels(f, p);
 				if (last!=null) {
-//					paint.setColor( ColorUtils.toTrafficLight( new Float( 255 * f.getSpeed()/max ).intValue() ));
-					paint.setColor(0xFFCC0099);
+					paint.setColor( green);
 					canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 				}
 				last = p;
@@ -55,5 +59,11 @@ public class TrafficOverlay extends Overlay {
 		if (shadow) return;
 		drawTracks(canvas, mapView);
 		super.draw(canvas, mapView, shadow);
+	}
+	
+	@Override
+	public boolean onTap(GeoPoint p, MapView mapView) {
+		mapView.getController().zoomIn();
+		return super.onTap(p, mapView);
 	}
 }

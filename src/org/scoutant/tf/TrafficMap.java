@@ -30,9 +30,12 @@ public class TrafficMap extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        mapController.setCenter( new LatLng(45.2073,5.7833) );
-        mapController.setZoom(16 );
-		mapView.getOverlays().add( new TrafficOverlay( this));
+        //| 45.2073,5.7833
+        mapController.setCenter( new LatLng(45.1794,5.7316) );
+        mapController.setZoom(13 );
+		mapView.getOverlays().add( new TrafficOverlay( ));
+
+		new GetTraffic(mapView).execute();
 	  }
 
 	@Override

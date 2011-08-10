@@ -15,7 +15,14 @@ public class LatLng extends GeoPoint implements Serializable{
 	public LatLng(Location location) {
 		this(location.getLatitude(), location.getLongitude());
 	}
-	
+
+	/** 
+	 * with @param string like '45.23864,5.66103'
+	 */
+	public LatLng(String rep) {
+		this( new Double( rep.split(",")[0]), new Double( rep.split(",")[1]));
+	}
+
 	public double lat() { return new Double(getLatitudeE6()/1E6); }
 	public double lng() { return new Double(getLongitudeE6()/1E6); }
 }
