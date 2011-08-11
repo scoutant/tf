@@ -59,6 +59,9 @@ public class TrafficOverlay extends Overlay {
 						p.offset(o.x, o.y);
 //						paint.setColor( q%2==0 ? green : Color.RED);
 						paint.setColor( green);
+						if (f.color != 0) {
+							paint.setColor( Color.RED);							
+						}
 						q++;
 						canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 						last = p;

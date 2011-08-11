@@ -34,8 +34,8 @@ public class TrafficMap extends MapActivity {
         mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
 //		mapView.getOverlays().add( new OffsetPolylineOverlay( ));
-//		new ComputeTraffic(mapView).execute();
 		new GetTraffic().execute();
+		new ComputeTraffic(mapView).execute();
 	  }
 
 	@Override
@@ -56,7 +56,6 @@ public class TrafficMap extends MapActivity {
 	        mapController.animateTo( new LatLng( 45.2069,5.7882) );
 		}
 		if (menuItem.getItemId()==MENU_SEARCH){
-//			new Directions().execute();
 			new ComputeTraffic(mapView).execute();
 		}
 		return true;

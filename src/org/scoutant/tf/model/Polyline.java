@@ -41,5 +41,15 @@ public class Polyline {
 		_points.add( item);
 		return this;
 	}
+
+	
+	public LatLng point(double lat, double lng) {
+		for (LatLng p : _points) {
+			if (p.lat() == lat && p.lng() == lng) {
+				return p;
+			}
+		}
+		return null;
+	}
 	
 }

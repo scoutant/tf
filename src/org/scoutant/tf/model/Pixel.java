@@ -14,6 +14,15 @@ public class Pixel {
 	public int x;
 	public int y;
 	public int color;
+	public double lat;
+	public double lng;
+
+	public Pixel(int x, int y, double lat, double lng) {
+		this(x,y);
+		this.lat = lat;
+		this.lng = lng;
+	}
+	
 	
 	public String toString() {
 		return "(" + x +"," + y + ") : " + color;

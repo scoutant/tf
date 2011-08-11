@@ -8,6 +8,9 @@ import com.google.android.maps.GeoPoint;
 
 public class LatLng extends GeoPoint implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	public int color;
+	
 	public LatLng(double lat, double lng) {
 		super( new Double(lat*1E6).intValue(), new Double(lng*1E6).intValue() );
 	}
@@ -25,4 +28,12 @@ public class LatLng extends GeoPoint implements Serializable{
 
 	public double lat() { return new Double(getLatitudeE6()/1E6); }
 	public double lng() { return new Double(getLongitudeE6()/1E6); }
+	
+	public String toString(){
+		String str = "";
+		str += "(" + lat() + ", " + lng() +")";
+		if (color!=0) str += "color : " + color;
+		return str;
+	}
+	
 }
