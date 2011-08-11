@@ -3,6 +3,7 @@ package org.scoutant.tf.overlay;
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Polyline;
+import org.scoutant.tf.model.Road;
 import org.scoutant.tf.util.MapUtils;
 
 import android.graphics.Canvas;
@@ -30,9 +31,11 @@ public class TrafficOverlay extends Overlay {
 		paint.setColor( Color.MAGENTA);
 	}
 	
+	
+	// TODO draw List of Network....
 	private void drawNetwork(Canvas canvas, MapView map) {
-		for(Polyline polyline : Model.model().network.polylines()) {
-			drawPolyline(canvas, map, polyline);
+		for(Road road : Model.model().network.roads()) {
+			drawPolyline(canvas, map, road.polyline);
 		}
 	}
 	

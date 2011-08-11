@@ -19,6 +19,10 @@ public class Road {
 	
 	public int[][] track;
 	
+	public Road(String polyline) {
+		this.polyline = new Polyline( polyline);
+	}
+	
 	public Road( int[][] track) {
 		for (int p=0;p<track.length;p++){
 			add( new Pixel(track[p][0], track[p][1]));

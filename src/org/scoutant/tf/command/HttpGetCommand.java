@@ -2,6 +2,7 @@ package org.scoutant.tf.command;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,6 +24,7 @@ public abstract class HttpGetCommand implements Command {
 	protected InputStream doGet(String url) {
 		Log.i (tag, "GET : " + url);
 		HttpResponse response = null;
+		long before = new Date().getTime();
 		try {
 			response = client.execute( new HttpGet( url));
 		} catch (ClientProtocolException e) {
@@ -42,8 +44,10 @@ public abstract class HttpGetCommand implements Command {
 		} catch (IOException e) {
 			Log.e(tag, "url : " + url, e);
 		}
+		long duration = (new Date().getTime() - before);
+		Log.e(tag, "duration : " + duration + " ms");
+
 		return is;
 		// TODO close connection?
-	}
-	
+	}	
 }

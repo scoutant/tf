@@ -18,15 +18,7 @@ public class ComputeTraffic implements Command {
 	
 	@Override
 	public void execute() {
-		Network network = Model.model().network;
-		network.add( Polyline.A48S);
-		network.add( Polyline.A48N);
-		network.add( Polyline.GrenobleSE);
-		network.add( Polyline.GrenobleSO);
-		network.add( Polyline.GrenobleBastilleO);
-		network.add( Polyline.GrenobleBastilleE);
 		map.invalidate();
-		Log.d(tag, "get traffic...");
 	}
 
 }

@@ -2,6 +2,7 @@ package org.scoutant.tf;
 
 import org.scoutant.tf.command.ComputeTraffic;
 import org.scoutant.tf.command.GetTraffic;
+import org.scoutant.tf.command.InitNetworks;
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
@@ -34,8 +35,9 @@ public class TrafficMap extends MapActivity {
         mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
 //		mapView.getOverlays().add( new OffsetPolylineOverlay( ));
+		new InitNetworks().execute();
 		new GetTraffic().execute();
-		new ComputeTraffic(mapView).execute();
+//		new ComputeTraffic(mapView).execute();
 	  }
 
 	@Override
