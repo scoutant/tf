@@ -17,32 +17,28 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
 
-public class TrafficOverlay extends Overlay {
+public class OffsetPolylineOverlay extends Overlay {
 	
 	public static final int green = Color.rgb( 51, 187, 0);
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
 
-	public TrafficOverlay() {
+	public OffsetPolylineOverlay() {
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(5.5f);
 		paint.setColor( Color.MAGENTA);
 	}
 	
-	private void drawNetwork(Canvas canvas, MapView map) {
-		for(Polyline polyline : Model.model().network.polylines()) {
-			drawPolyline(canvas, map, polyline);
-		}
-	}
-	
-	private void drawPolyline(Canvas canvas, MapView map, Polyline polyline ) {
+	private void drawPolyline(Canvas canvas, MapView map) {
+		Polyline polyline = Model.model().polyline;
 		if (polyline==null || polyline.size()==0) return;
 		Projection pj = map.getProjection();
 		Rect viewRect = MapUtils.toRectx2(map);
 		Point last = null;
 		Point lastNormal=null;
 		int q=0;
+		
 		for (LatLng f : polyline.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
@@ -52,7 +48,7 @@ public class TrafficOverlay extends Overlay {
 					lastNormal = new Point(p);
 					last = p;
 				} else {
-					Point o = MapUtils.offset(lastNormal, p, 5);
+					Point o = MapUtils.offset(lastNormal, p, 6);
 					// if null, hence to close, we just omit the point 
 					if (o!=null) {
 						lastNormal = new Point(p);
@@ -71,7 +67,7 @@ public class TrafficOverlay extends Overlay {
 	@Override
 	public void draw(Canvas canvas, MapView mapView, boolean shadow) {
 		if (shadow) return;
-		drawNetwork(canvas, mapView);
+		drawPolyline(canvas, mapView);
 		super.draw(canvas, mapView, shadow);
 	}
 	

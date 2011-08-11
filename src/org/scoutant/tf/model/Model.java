@@ -1,5 +1,6 @@
 package org.scoutant.tf.model;
 
+
 public class Model {
 
 	private static Model _instance;
@@ -9,4 +10,6 @@ public class Model {
 	}
 
 	public Polyline polyline;
+	
+	public Network network = new Network();
 }

@@ -1,7 +1,6 @@
 package org.scoutant.tf.command;
 
-import org.scoutant.tf.model.Model;
-import org.scoutant.tf.model.Polyline;
+import org.scoutant.tf.model.*;
 import org.scoutant.tf.util.PolylineDecoder;
 
 import android.util.Log;
@@ -19,8 +18,13 @@ public class GetTraffic implements Command {
 	
 	@Override
 	public void execute() {
-		Polyline line = Polyline.grenobleSud;
-		Model.model().polyline = line;
+		Network network = Model.model().network;
+		network.add( Polyline.A48S);
+		network.add( Polyline.A48N);
+		network.add( Polyline.GrenobleSE);
+		network.add( Polyline.GrenobleSO);
+		network.add( Polyline.GrenobleBastilleO);
+		network.add( Polyline.GrenobleBastilleE);
 		map.invalidate();
 		Log.d(tag, "get traffic...");
 	}

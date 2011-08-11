@@ -37,17 +37,15 @@ public class MapUtils {
 		double a = to.x-from.x;
 		double b = to.y-from.y;
 		if (a*a+b*b < 25) return null;
-		// aX + bY + c = 0 is a normal line whatever c. Line that crosses 'to' is aX + bY = a*to.x + b*to.y 
-		// (a,b) is vector for polyline. (b,-a) is vector for normal line.
-		// x = b*t; y=-a*t is parametrise expression of normal line.
-		// The one that crosses 'to' is
-		// x-to.x = b*t; y-to.y = -a*t;
+		// Vector (a,b) for our polyline. And (-b,a) is vector for normal line.
+		// x = -b*t; y=+a*t is parametrised expression of normal line.
+		// The one that crosses 'to' is : x-to.x = b*t; y-to.y = -a*t;
 		// we are looking for t to have offset of 'dist'
 		// b²t² + a²t² = d² --> t = sqrt(d²/(a²+b²));
 		double t = Math.sqrt( d*d/(a*a+b*b));  
 		Point p = new Point();
-		p.x = new Double(b*t).intValue() ;
-		p.y = -new Double(a*t).intValue() ;
+		p.x = -new Double(b*t).intValue() ;
+		p.y = +new Double(a*t).intValue() ;
 		return p;
 	}
 	
