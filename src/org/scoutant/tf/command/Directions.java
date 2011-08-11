@@ -14,7 +14,7 @@ import android.util.Log;
 /**
  * http://maps.google.com/maps/api/directions/xml?sensor=false&language=fr&origin=Meylan,france&destination=gare,grenoble,france
  */
-public class Directions extends HttpCommand {
+public class Directions extends XmlHttpGetCommand {
 	private static final String tag = "http";
 	private PolylineDecoder decoder = new PolylineDecoder();
 

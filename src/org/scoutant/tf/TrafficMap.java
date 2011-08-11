@@ -1,9 +1,8 @@
 package org.scoutant.tf;
 
+import org.scoutant.tf.command.ComputeTraffic;
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.model.LatLng;
-import org.scoutant.tf.overlay.OffsetPolylineOverlay;
-import org.scoutant.tf.overlay.PolylineOverlay;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
 import android.os.Bundle;
@@ -35,9 +34,8 @@ public class TrafficMap extends MapActivity {
         mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
 //		mapView.getOverlays().add( new OffsetPolylineOverlay( ));
-//		mapView.getOverlays().add( new PolylineOverlay( ));
-
-		new GetTraffic(mapView).execute();
+//		new ComputeTraffic(mapView).execute();
+		new GetTraffic().execute();
 	  }
 
 	@Override
@@ -59,7 +57,7 @@ public class TrafficMap extends MapActivity {
 		}
 		if (menuItem.getItemId()==MENU_SEARCH){
 //			new Directions().execute();
-			new GetTraffic(mapView).execute();
+			new ComputeTraffic(mapView).execute();
 		}
 		return true;
 	}

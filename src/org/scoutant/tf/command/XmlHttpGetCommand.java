@@ -14,11 +14,11 @@ import org.xml.sax.SAXException;
 
 import android.util.Log;
 
-public abstract class HttpCommand implements Command {
+public abstract class XmlHttpGetCommand implements Command {
 
 	private static final String tag = "http";
 	protected DocumentBuilder builder;
-	public HttpCommand() {
+	public XmlHttpGetCommand() {
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
