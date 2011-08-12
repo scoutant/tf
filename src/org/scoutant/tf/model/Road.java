@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Road {
 
-	public Polyline polyline = Polyline.GrenobleSO;
+	public Polyline polyline = null;
+	public String name;
 	
 	public List<LatLng> points = new ArrayList<LatLng>();
-	
 
 	private List<Pixel> _pixels = new ArrayList<Pixel>();
 	public List<Pixel> pixels() { return _pixels; }
@@ -20,10 +20,15 @@ public class Road {
 		return this;
 	}
 	
+	public Road set(String polyline) {
+		this.polyline = new Polyline( polyline);
+		return this;
+	}
+	
 	public int[][] track;
 	
-	public Road(String polyline) {
-		this.polyline = new Polyline( polyline);
+	public Road(String name) {
+		this.name = name;
 	}
 	
 	public Road( int[][] track) {
@@ -31,35 +36,12 @@ public class Road {
 			add( new Pixel(track[p][0], track[p][1]));
 		}
 	}
-
-	// 			{ 367, 124 , 45.19833, 5.7808},
-
-	public static int[][] ROCADE = { 
-			{ 367, 124},
-			{ 369,134 },
-			{ 370,147 },
-			{ 369,159 },
-			{ 366, 170},
-			{ 361,180 },
-			{ 357, 188},
-			{ 347, 200},
-			{ 337, 211},
-			{ 330, 222},
-			{ 322, 234},
-			{ 316, 245},
-			{ 311, 250},
-			{ 304, 263},
-			{ 299, 272},
-			{ 293, 280},
-			{ 286, 289},
-			{ 282, 295},
-			{ 273, 302},
-			{ 260, 311},
-			{ 245, 316},
-			{ 234, 318},
-			{ 221, 319},
-	};	
 	
-	
+	public String toString() {
+		String str ="";
+		str += name + ", # points : " + polyline.size() + ", # pixels : " + _pixels.size();
+		str += polyline;
+		return str;
+	}
 	
 }

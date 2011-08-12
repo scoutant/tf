@@ -31,7 +31,7 @@ public class PolylineOverlay extends Overlay {
 	}
 	
 	private void drawTracks(Canvas canvas, MapView map) {
-		Polyline track = Model.model().polyline;
+		Polyline track = Model.model().country.network(0).road(0).polyline;
 		if (track==null || track.size()==0) return;
 //		Log.d(tag, "drawing # of points " + track.size());
 		Projection pj = map.getProjection();

@@ -5,18 +5,12 @@ import java.util.List;
 
 public class Network {
 
-//	private List<Polyline> _polylines = new ArrayList<Polyline>();
-//	
-//	public Polyline polyline(int location) {
-//		return _polylines.get(location);
-//	}
-//	public Network add(Polyline item) {
-//		_polylines.add(item);
-//		return this;
-//	}
-//	public List<Polyline> polylines() {
-//		return _polylines;
-//	}
+	
+	public String name;
+	
+	public Network(String name) {
+		this.name = name;
+	}
 	
 	private List<Road> _roads = new ArrayList<Road>();
 	public Road road(int location) {
@@ -28,6 +22,12 @@ public class Network {
 	}
 	public List<Road> roads() { return _roads; }
 	
-	
+	public String toString() {
+		String str= "Network " + name + "\n";
+		for(Road road : roads()) {
+			str += road + "\n";
+		}
+		return str;
+	}
 	
 }

@@ -32,7 +32,7 @@ public class TrafficOverlay extends Overlay {
 	}
 	// TODO draw List of Network....
 	private void drawNetwork(Canvas canvas, MapView map) {
-		for(Road road : Model.model().network.roads()) {
+		for(Road road : Model.model().country.network(0).roads()) {
 			drawPolyline(canvas, map, road.polyline);
 		}
 	}

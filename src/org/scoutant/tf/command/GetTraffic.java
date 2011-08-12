@@ -24,7 +24,7 @@ public class GetTraffic extends HttpGetCommand {
 		bitmap = BitmapFactory.decodeStream(is);
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
-		Road road = Model.model().network.road(0);
+		Road road = Model.model().country.network(0).road(0);
 		Polyline polyline = road.polyline;
 		Pixel pixelFrom = null;
 		LatLng pointFrom = null;
@@ -54,9 +54,9 @@ public class GetTraffic extends HttpGetCommand {
 					Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
 					q.color = bitmap.getPixel( q.x, q.y);
 					// compute a matching point along polyline, by distance interpolation
-					LatLng p = polyline.interpolate(pointFrom, pointTo, distance*index/n);
+					LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
 					p.color = color;
-					Log.d(tag, "" + new Double(distance*index/n).intValue() +" ---> " +q+ "  ---  " + p);
+//					Log.d(tag, "" + new Double((distance*index)/n).intValue() +" ---> " +q+ "  ---  " + p);
 					
 				}
 				road.points.add( pointTo);
@@ -64,7 +64,7 @@ public class GetTraffic extends HttpGetCommand {
 			pixelFrom=pixelTo;
 			pointFrom=pointTo;
 		}
-		Log.d(tag, "GrenobleSO, Now # points :" + polyline.size());
+		Log.d(tag, "GrenobleSO is now : " + road);
 
 	}
 

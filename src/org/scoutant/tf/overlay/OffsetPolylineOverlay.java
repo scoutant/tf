@@ -31,7 +31,7 @@ public class OffsetPolylineOverlay extends Overlay {
 	}
 	
 	private void drawPolyline(Canvas canvas, MapView map) {
-		Polyline polyline = Model.model().polyline;
+		Polyline polyline = Model.model().country.network(0).road(0).polyline;
 		if (polyline==null || polyline.size()==0) return;
 		Projection pj = map.getProjection();
 		Rect viewRect = MapUtils.toRectx2(map);

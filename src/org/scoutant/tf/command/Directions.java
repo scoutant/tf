@@ -39,7 +39,7 @@ public class Directions extends XmlHttpGetCommand {
     		Log.d( tag, "polyline : " + polyline);
     	}
     	
-		Model.model().polyline = decoder.polyline( polyline);
+//		Model.model().polyline = decoder.polyline( polyline);
 	}
 	
 }
