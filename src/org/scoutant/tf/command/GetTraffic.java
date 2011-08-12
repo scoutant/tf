@@ -64,6 +64,8 @@ public class GetTraffic extends HttpGetCommand {
 			pixelFrom=pixelTo;
 			pointFrom=pointTo;
 		}
+		Log.d(tag, "GrenobleSO, Now # points :" + polyline.size());
+
 	}
 
 }

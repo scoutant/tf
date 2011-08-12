@@ -12,5 +12,13 @@ public class LatLngUtils {
 		return results[0];
 	}
 
+	/** 
+	 * Very local interpolation only!
+	 */ 
+	public static LatLng interpolate( LatLng a, LatLng z, double distance ) {
+		if (a==z) return a;
+		double ratio = distance / distance(a, z);
+		return new LatLng((1-ratio)*a.lat()+ratio*z.lat() , (1-ratio)*a.lng()+ratio*z.lng());
+	}
 	
 }
