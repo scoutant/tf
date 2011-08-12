@@ -30,8 +30,6 @@ public class TrafficOverlay extends Overlay {
 		paint.setStrokeWidth(5.5f);
 		paint.setColor( Color.MAGENTA);
 	}
-	
-	
 	// TODO draw List of Network....
 	private void drawNetwork(Canvas canvas, MapView map) {
 		for(Road road : Model.model().network.roads()) {
@@ -56,14 +54,16 @@ public class TrafficOverlay extends Overlay {
 					last = p;
 				} else {
 					Point o = MapUtils.offset(lastNormal, p, 5);
-					// if null, hence to close, we just omit the point 
+					// if null, hence too close, we just omit the point 
 					if (o!=null) {
 						lastNormal = new Point(p);
 						p.offset(o.x, o.y);
-//						paint.setColor( q%2==0 ? green : Color.RED);
-						paint.setColor( green);
+//						paint.setColor( green);
+						paint.setColor( Color.GRAY);
 						if (f.color != 0) {
-							paint.setColor( Color.RED);							
+//							paint.setColor( Color.RED);							
+							paint.setColor( f.color);
+							// TODO color as point before is color is null!!!
 						}
 						q++;
 						canvas.drawLine(last.x, last.y, p.x, p.y, paint);

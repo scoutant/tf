@@ -1,7 +1,9 @@
 package org.scoutant.tf.util;
 
 import java.util.List;
+
 import org.scoutant.tf.model.LatLng;
+import org.scoutant.tf.model.Polyline;
 
 public class PolylineUtils {
 
@@ -21,4 +23,10 @@ public class PolylineUtils {
 		return str.substring(1, str.length());
 	}
 
+	
+	
+	
+	
+	
+	
 }

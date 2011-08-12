@@ -6,6 +6,9 @@ import java.util.List;
 public class Road {
 
 	public Polyline polyline = Polyline.GrenobleSO;
+	
+	public List<LatLng> points = new ArrayList<LatLng>();
+	
 
 	private List<Pixel> _pixels = new ArrayList<Pixel>();
 	public List<Pixel> pixels() { return _pixels; }

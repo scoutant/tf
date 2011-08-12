@@ -7,6 +7,7 @@ import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Pixel;
 import org.scoutant.tf.model.Polyline;
 import org.scoutant.tf.model.Road;
+import org.scoutant.tf.util.LatLngUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,42 +25,44 @@ public class GetTraffic extends HttpGetCommand {
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
 		Road road = Model.model().network.road(0);
+		Polyline polyline = road.polyline;
+		Pixel pixelFrom = null;
+		LatLng pointFrom = null;
 		
-		for (Pixel pixel : road.pixels()) {
-			int color = bitmap.getPixel(pixel.x, pixel.y);
-			pixel.color = color;
-			LatLng point = road.polyline.point( pixel.lat, pixel.lng);
-			if (point!=null) {
-				point.color = color;
-				Log.d(tag, "found : " + point);
+		for (Pixel pixelTo : road.pixels()) {
+			int color = bitmap.getPixel(pixelTo.x, pixelTo.y);
+			pixelTo.color = color;
+			LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
+			Log.d(tag, "---------------------------------------------------------------");
+			Log.d(tag, "found : " + pointTo);
+			if (pointTo==null) {
+				Log.e(tag, "Did not find corresponding latlng!! ");
+				return;
 			}
+			pointTo.color = color;
+			if (pixelFrom!=null) {
+				double pixelD = Pixel.distance(pixelFrom, pixelTo);
+				int n = new Double(pixelD).intValue()/5;
+				Log.d(tag, "pixelD: " + new Double(pixelD).intValue() + ", n = " + n);
+				int dx = pixelTo.x-pixelFrom.x;
+				int dy = pixelTo.y-pixelFrom.y;
+				double distance = polyline.distance(pointFrom, pointTo);
+				Log.d(tag, "distance: " + distance);
+				for(int index=1; index<n; index++) {
+					Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
+					q.color = bitmap.getPixel( q.x, q.y);
+					Log.d(tag, ""+q);
+					// compute a matching point along polyline, by distance interpolation
+					LatLng p = polyline.interpolate(pointFrom, pointTo, distance*index/n);
+					p.color = color;
+					Log.d(tag, "interpolated " + p);
+					
+				}
+				road.points.add( pointTo);
+			}
+			pixelFrom=pixelTo;
+			pointFrom=pointTo;
 		}
 	}
-
-	public static int[][] ROCADE = { 
-		{ 367, 124},
-		{ 369,134 },
-		{ 370,147 },
-		{ 369,159 },
-		{ 366, 170},
-		{ 361,180 },
-		{ 357, 188},
-		{ 347, 200},
-		{ 337, 211},
-		{ 330, 222},
-		{ 322, 234},
-		{ 316, 245},
-		{ 311, 250},
-		{ 304, 263},
-		{ 299, 272},
-		{ 293, 280},
-		{ 286, 289},
-		{ 282, 295},
-		{ 273, 302},
-		{ 260, 311},
-		{ 245, 316},
-		{ 234, 318},
-		{ 221, 319},
-};	
 
 }

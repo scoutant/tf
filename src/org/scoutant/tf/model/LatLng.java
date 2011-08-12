@@ -36,4 +36,7 @@ public class LatLng extends GeoPoint implements Serializable{
 		return str;
 	}
 	
+
+	
+	
 }

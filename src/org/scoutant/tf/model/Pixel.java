@@ -2,6 +2,7 @@ package org.scoutant.tf.model;
 
 public class Pixel {
 
+	
 	public Pixel(int x, int y) {
 		this.x = x;
 		this.y =y ;
