@@ -88,7 +88,7 @@ public class Polyline {
 	 */
 	public LatLng interpolate(LatLng a, LatLng z, double distance) {
 		if (distance==0) return a;
-		Log.d(tag, "distance along polyline : " + distance);
+//		Log.d(tag, "distance along polyline : " + distance);
 		if (distance==0) return a;
 		int iA = _points.indexOf(a);
 		int iZ = _points.indexOf(z);
@@ -96,9 +96,15 @@ public class Polyline {
 		// TODO optimize with dichotomie?
 		double d=0;
 		for (int index=iA; index<iZ; index++) {
-			d+= LatLngUtils.distance( point(index), point(index+1));
+			double delta = LatLngUtils.distance( point(index), point(index+1));
+			d += delta;
 			if (d>=distance) {
-				return point(index);
+				if (delta > 200) {
+					Log.d(tag, "Caution long dist. Best to interpolate!");
+					return point(index);
+				} else {
+					return point(index);
+				}
 				// TODO interpolate between point(index) and point(index+1) for a second accuracy  
 			}
 		}

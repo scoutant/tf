@@ -44,6 +44,7 @@ public class TrafficOverlay extends Overlay {
 		Point last = null;
 		Point lastNormal=null;
 		int q=0;
+		int color=0;
 		for (LatLng f : polyline.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
@@ -61,10 +62,9 @@ public class TrafficOverlay extends Overlay {
 //						paint.setColor( green);
 						paint.setColor( Color.GRAY);
 						if (f.color != 0) {
-//							paint.setColor( Color.RED);							
-							paint.setColor( f.color);
-							// TODO color as point before is color is null!!!
+							color=f.color;
 						}
+						paint.setColor( color);
 						q++;
 						canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 						last = p;

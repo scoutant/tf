@@ -32,9 +32,11 @@ public class GetTraffic extends HttpGetCommand {
 		for (Pixel pixelTo : road.pixels()) {
 			int color = bitmap.getPixel(pixelTo.x, pixelTo.y);
 			pixelTo.color = color;
+			if (color==0) Log.e(tag, "ERROR color null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
 			Log.d(tag, "---------------------------------------------------------------");
-			Log.d(tag, "found : " + pointTo);
+			Log.d(tag, "pixel : " + color);
+			Log.d(tag, "pointTo : " + pointTo);
 			if (pointTo==null) {
 				Log.e(tag, "Did not find corresponding latlng!! ");
 				return;
@@ -47,15 +49,14 @@ public class GetTraffic extends HttpGetCommand {
 				int dx = pixelTo.x-pixelFrom.x;
 				int dy = pixelTo.y-pixelFrom.y;
 				double distance = polyline.distance(pointFrom, pointTo);
-				Log.d(tag, "distance: " + distance);
+				Log.d(tag, "distance: " + new Double(distance).intValue());
 				for(int index=1; index<n; index++) {
 					Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
 					q.color = bitmap.getPixel( q.x, q.y);
-					Log.d(tag, ""+q);
 					// compute a matching point along polyline, by distance interpolation
 					LatLng p = polyline.interpolate(pointFrom, pointTo, distance*index/n);
 					p.color = color;
-					Log.d(tag, "interpolated " + p);
+					Log.d(tag, "" + new Double(distance*index/n).intValue() +" ---> " +q+ "  ---  " + p);
 					
 				}
 				road.points.add( pointTo);

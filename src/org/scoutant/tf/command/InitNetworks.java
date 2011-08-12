@@ -3,9 +3,10 @@ package org.scoutant.tf.command;
 import org.scoutant.tf.model.*;
 
 public class InitNetworks implements Command {
-	
+
 	// TODO refactor to List<Network> to target mores cities...
 	Network network = Model.model().network;
+
 	@Override
 	public void execute() {
 		// GrenobleSO
@@ -17,37 +18,16 @@ public class InitNetworks implements Command {
 			.add( new Pixel( 341, 205, 45.17958,5.77564))
 			.add( new Pixel( 330, 220, 45.17341,5.76478))
 			.add( new Pixel( 293, 280, 45.15705,5.74799))
+			.add( new Pixel( 274, 302, 45.15459,5.74454))
+			.add( new Pixel( 254, 315, 45.15178,5.73789))
+			.add( new Pixel( 228, 320, 45.15075,5.73138))
+			.add( new Pixel( 200, 320, 45.1519,5.72082))
+			.add( new Pixel( 180, 317, 45.15273,5.71731))
+//			.add( new Pixel( 168, 310, 45.15595,5.71361))
+			.add( new Pixel( 154, 302, 45.15837,5.7102))
+			.add( new Pixel( 143, 302, 45.15868,5.70337))
 		);
 		
 		
 	}
-
 }
-
-
-//public static int[][] ROCADE = { 
-//{ 367, 124},
-//{ 369,134 },
-//{ 370,147 },
-//{ 369,159 },
-//{ 366, 170},
-//{ 361,180 },
-//{ 357, 188},
-//{ 347, 200},
-//{ 337, 211},
-//{ 330, 222},
-//{ 322, 234},
-//{ 316, 245},
-//{ 311, 250},
-//{ 304, 263},
-//{ 299, 272},
-//{ 293, 280},
-//{ 286, 289},
-//{ 282, 295},
-//{ 273, 302},
-//{ 260, 311},
-//{ 245, 316},
-//{ 234, 318},
-//{ 221, 319},
-//};	
-

@@ -32,7 +32,7 @@ public class LatLng extends GeoPoint implements Serializable{
 	public String toString(){
 		String str = "";
 		str += "(" + lat() + ", " + lng() +")";
-		if (color!=0) str += "color : " + color;
+		if (color!=0) str += ",  color : " + color;
 		return str;
 	}
 	
