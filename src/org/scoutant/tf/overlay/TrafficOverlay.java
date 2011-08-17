@@ -4,6 +4,7 @@ import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Polyline;
 import org.scoutant.tf.model.Road;
+import org.scoutant.tf.util.ColorUtil;
 import org.scoutant.tf.util.MapUtils;
 
 import android.graphics.Canvas;
@@ -28,8 +29,9 @@ public class TrafficOverlay extends Overlay {
 
 	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
-		paint.setStrokeWidth(5.5f);
+		paint.setStrokeWidth(4f);
 		paint.setColor( Color.MAGENTA);
+		paint.setAntiAlias(true);
 	}
 	// TODO draw List of Network....
 	private void drawNetwork(Canvas canvas, MapView map) {
@@ -55,13 +57,16 @@ public class TrafficOverlay extends Overlay {
 					lastNormal = new Point(p);
 					last = p;
 				} else {
-					Point o = MapUtils.offset(lastNormal, p, 5);
+					Point o = MapUtils.offset(lastNormal, p, 4);
 					// if null, hence too close, we just omit the point 
 					if (o!=null) {
 						lastNormal = new Point(p);
 						p.offset(o.x, o.y);
-						if (f.color != 0) {
-							color=f.color;
+//						if (f.color != 0) {
+						// TODO ok to extrapolate unknow gray color?
+						if (f.color != 0 && f.color != -9407614) {
+//							color=f.color;
+							color= ColorUtil.color(f.color);
 						}
 						paint.setColor( color);
 						q++;

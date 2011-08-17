@@ -56,7 +56,6 @@ public class GetTraffic extends HttpGetCommand {
 						LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
 						p.color = color;
 	//					Log.d(tag, "" + new Double((distance*index)/n).intValue() +" ---> " +q+ "  ---  " + p);
-						
 					}
 					road.points.add( pointTo);
 				}
@@ -66,5 +65,4 @@ public class GetTraffic extends HttpGetCommand {
 			Log.d(tag, "road is now : " + road);
 		}
 	}
-
 }
