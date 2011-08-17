@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -44,7 +45,7 @@ public class TrafficOverlay extends Overlay {
 		Point last = null;
 		Point lastNormal=null;
 		int q=0;
-		int color=0;
+		int color=Color.GRAY;
 		for (LatLng f : polyline.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
@@ -59,8 +60,6 @@ public class TrafficOverlay extends Overlay {
 					if (o!=null) {
 						lastNormal = new Point(p);
 						p.offset(o.x, o.y);
-//						paint.setColor( green);
-						paint.setColor( Color.GRAY);
 						if (f.color != 0) {
 							color=f.color;
 						}
