@@ -7,6 +7,7 @@ import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Pixel;
 import org.scoutant.tf.model.Polyline;
 import org.scoutant.tf.model.Road;
+import org.scoutant.tf.util.BitmapUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,12 +30,16 @@ public class GetTraffic extends HttpGetCommand {
 			Pixel pixelFrom = null;
 			LatLng pointFrom = null;
 			for (Pixel pixelTo : road.pixels()) {
-				int color = bitmap.getPixel(pixelTo.x, pixelTo.y);
+//				int color = bitmap.getPixel(pixelTo.x, pixelTo.y);
+				int color = BitmapUtils.getPixel( bitmap, pixelTo.x, pixelTo.y);
 				pixelTo.color = color;
-				if (color==0) Log.e(tag, "ERROR color null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
 				Log.d(tag, "---------------------------------------------------------------");
 				Log.d(tag, "pixel : " + color);
+				if (color==0) { 
+					Log.e(tag, "ERROR color null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					Log.d(tag, "pixelTo : " + pixelTo);
+				}
 				Log.d(tag, "pointTo : " + pointTo);
 				if (pointTo==null) {
 					Log.e(tag, "Did not find corresponding latlng!! ");
