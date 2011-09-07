@@ -62,10 +62,8 @@ public class TrafficOverlay extends Overlay {
 					if (o!=null) {
 						lastNormal = new Point(p);
 						p.offset(o.x, o.y);
-//						if (f.color != 0) {
 						// TODO ok to extrapolate unknow gray color?
 						if (f.color != 0 && f.color != -9407614) {
-//							color=f.color;
 							color= ColorUtil.color(f.color);
 						}
 						paint.setColor( color);

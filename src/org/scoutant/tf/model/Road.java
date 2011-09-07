@@ -8,7 +8,7 @@ public class Road {
 	public Polyline polyline = null;
 	public String name;
 	
-	public List<LatLng> points = new ArrayList<LatLng>();
+//	public List<LatLng> points = new ArrayList<LatLng>();
 
 	private List<Pixel> _pixels = new ArrayList<Pixel>();
 	public List<Pixel> pixels() { return _pixels; }
@@ -43,5 +43,5 @@ public class Road {
 		str += polyline;
 		return str;
 	}
-	
+
 }

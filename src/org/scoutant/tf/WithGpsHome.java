@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 
 
-public class Home extends Activity {
+public class WithGpsHome extends Activity {
 	public static final String tag = "activity"; 
 	private static final int MENU_ITEM_PREFERENCES=-1;
 	private static final int MENU_ITEM_START_STOP = 0x1;

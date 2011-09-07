@@ -1,12 +1,12 @@
 package org.scoutant.tf;
 
-import org.scoutant.tf.command.ComputeTraffic;
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.command.InitNetworks;
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,10 +20,9 @@ public class TrafficMap extends MapActivity {
 	private MapView mapView;
 	private MapController mapController;
 	
+	static final int MENU_ITEM_PREFERENCES=-1;
 	static final int MENU_VIEW = 0;
-	static final int MENU_SEARCH = 1;
-	static final int MENU_ACTION = 2;
-	static final int MENU_ITEM = 3;
+	static final int MENU_REFRESH = 1;
 	private static final String tag = "activity";
 	
 	  @Override
@@ -33,11 +32,9 @@ public class TrafficMap extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        //| 45.2073,5.7833
         mapController.setCenter( new LatLng(45.1794,5.7316) );
         mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
-//		mapView.getOverlays().add( new OffsetPolylineOverlay( ));
 		new InitNetworks().execute();
 		new GetTraffic().execute();
 //		new ComputeTraffic(mapView).execute();
@@ -52,15 +49,20 @@ public class TrafficMap extends MapActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 //		menu.add(Menu.NONE, MENU_VIEW, Menu.NONE, "View").setIcon(android.R.drawable.ic_menu_view);
-		menu.add(Menu.NONE, MENU_SEARCH, Menu.NONE, "Do It").setIcon(android.R.drawable.ic_menu_search);
+		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Actualiser").setIcon(android.R.drawable.ic_menu_send);
+		menu.add(Menu.NONE, MENU_ITEM_PREFERENCES, Menu.NONE, "Paramètres").setIcon(android.R.drawable.ic_menu_preferences);
 		return true;
 	}
 
-	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		if (menuItem.getItemId()==MENU_VIEW){
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == MENU_ITEM_PREFERENCES) {
+			startActivity( new Intent(this, Settings.class));
+		}
+		if (id==MENU_VIEW){
 	        mapController.animateTo( new LatLng( 45.2069,5.7882) );
 		}
-		if (menuItem.getItemId()==MENU_SEARCH){
+		if (id==MENU_REFRESH){
 //			new ComputeTraffic(mapView).execute();
 			Log.d(tag, ""+Model.model().country);
 			new GetTraffic().execute();

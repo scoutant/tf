@@ -1,3 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<CheckBoxPreference 
+		android:key="withGps" android:title="Utiliser le GPS" android:summary="Pour recentrer la carte" 
+		android:defaultValue="false" />
 </PreferenceScreen>

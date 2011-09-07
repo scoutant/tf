@@ -27,6 +27,8 @@ public class GetTraffic extends HttpGetCommand {
 		// TODO Do loop over all networks!
 		for( Road road : Model.model().country.network(0).roads()) {
 			Polyline polyline = road.polyline;
+			// TODO ok?
+			polyline.reset();
 			Pixel pixelFrom = null;
 			LatLng pointFrom = null;
 			for (Pixel pixelTo : road.pixels()) {
@@ -37,7 +39,7 @@ public class GetTraffic extends HttpGetCommand {
 				Log.d(tag, "---------------------------------------------------------------");
 				Log.d(tag, "pixel : " + color);
 				if (color==0) { 
-					Log.e(tag, "ERROR color null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					Log.e(tag, "ERROR color null!!!!!!");
 					Log.d(tag, "pixelTo : " + pixelTo);
 				}
 				Log.d(tag, "pointTo : " + pointTo);
@@ -62,7 +64,8 @@ public class GetTraffic extends HttpGetCommand {
 						p.color = color;
 	//					Log.d(tag, "" + new Double((distance*index)/n).intValue() +" ---> " +q+ "  ---  " + p);
 					}
-					road.points.add( pointTo);
+					// TODO prune this: 
+//					road.points.add( pointTo);
 				}
 				pixelFrom=pixelTo;
 				pointFrom=pointTo;

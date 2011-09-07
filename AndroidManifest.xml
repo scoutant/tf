@@ -11,6 +11,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity android:name=".Settings" android:label="Paramètres" />
     </application>
     <uses-sdk android:minSdkVersion="8" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"  />

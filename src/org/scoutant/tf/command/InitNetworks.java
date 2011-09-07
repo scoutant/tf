@@ -120,5 +120,3 @@ public class InitNetworks implements Command {
 		Log.d(tag, ""+country);
 	}
 }
-
-

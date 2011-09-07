@@ -119,4 +119,13 @@ public class Polyline {
 		return str;
 	}
 	
+	/**
+	 * Just reset the color of the points
+	 */
+	public void reset() {
+		for (LatLng p : _points) {
+			p.color = 0;
+		}
+	}
+	
 }
