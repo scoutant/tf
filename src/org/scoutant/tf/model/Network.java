@@ -5,11 +5,18 @@ import java.util.List;
 
 public class Network {
 
-	
 	public String name;
+	public String url;
+	public LatLng center;
 	
-	public Network(String name) {
+	public Network(String name, double lat, double lng) {
 		this.name = name;
+		center = new LatLng(lat, lng);
+	}
+	
+	public Network set(String url) {
+		this.url = url;
+		return this;
 	}
 	
 	private List<Road> _roads = new ArrayList<Road>();

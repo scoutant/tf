@@ -4,10 +4,13 @@ import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.command.InitNetworks;
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
+import org.scoutant.tf.model.Network;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,22 +27,37 @@ public class TrafficMap extends MapActivity {
 	static final int MENU_VIEW = 0;
 	static final int MENU_REFRESH = 1;
 	private static final String tag = "activity";
+	public SharedPreferences prefs;
 	
 	  @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        mapController.setCenter( new LatLng(45.1794,5.7316) );
-        mapController.setZoom(13 );
 		mapView.getOverlays().add( new TrafficOverlay( ));
 		new InitNetworks().execute();
 		new GetTraffic().execute();
 //		new ComputeTraffic(mapView).execute();
 	  }
 
+	  
+	@Override
+	protected void onResume() {
+		super.onResume();
+		String city = prefs.getString("city", "Lyon");
+		Network n = Model.model().country.find( city);
+		mapController.setCenter( new LatLng(45.1794,5.7316) );
+		if (n!=null) {
+			Log.d(tag, "setting center to : " + n.center);
+			mapController.setCenter( n.center );
+		}
+		// TODO adapt zoom against Network size?
+        mapController.setZoom(13 );
+	} 
+	  
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;

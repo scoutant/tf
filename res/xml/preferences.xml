@@ -3,4 +3,12 @@
 	<CheckBoxPreference 
 		android:key="withGps" android:title="Utiliser le GPS" android:summary="Pour recentrer la carte" 
 		android:defaultValue="false" />
+
+	<ListPreference 
+		android:key="city" android:title="Ville" android:summary="Ou région"
+		android:entries="@array/cityNames" android:entryValues="@array/cityValues" 
+		android:dialogTitle="Sélectionner la région par défaut"
+		android:defaultValue="Lyon"
+		/>
+
 </PreferenceScreen>

@@ -28,4 +28,13 @@ public class Country {
 		return str;
 	}
 	
+	public Network find(String name) {
+		for (Network n : _networks) {
+			if (n.name.equals( name)) {
+				return n;
+			}
+		}
+		return null;
+	}
+	
 }

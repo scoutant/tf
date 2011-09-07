@@ -2,6 +2,7 @@ package org.scoutant.tf.overlay;
 
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
+import org.scoutant.tf.model.Network;
 import org.scoutant.tf.model.Polyline;
 import org.scoutant.tf.model.Road;
 import org.scoutant.tf.util.ColorUtil;
@@ -13,7 +14,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -29,13 +29,18 @@ public class TrafficOverlay extends Overlay {
 
 	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
-		paint.setStrokeWidth(4f);
+		paint.setStrokeWidth(4.5f);
 		paint.setColor( Color.MAGENTA);
 		paint.setAntiAlias(true);
 	}
-	// TODO draw List of Network....
-	private void drawNetwork(Canvas canvas, MapView map) {
-		for(Road road : Model.model().country.network(0).roads()) {
+
+	private void drawTraffic(Canvas canvas, MapView map) {
+		for (Network network : Model.model().country.networks() ) {
+			drawNetwork(canvas, map, network);
+		}
+	}
+	private void drawNetwork(Canvas canvas, MapView map, Network network) {
+		for(Road road : network.roads()) {
 			drawPolyline(canvas, map, road.polyline);
 		}
 	}
@@ -79,7 +84,7 @@ public class TrafficOverlay extends Overlay {
 	@Override
 	public void draw(Canvas canvas, MapView mapView, boolean shadow) {
 		if (shadow) return;
-		drawNetwork(canvas, mapView);
+		drawTraffic(canvas, mapView);
 		super.draw(canvas, mapView, shadow);
 	}
 	

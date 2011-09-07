@@ -10,5 +10,15 @@
     <item>500</item>
     <item>1000</item>
   </string-array>
+  <string-array name="cityNames">
+    <item>Grenoble</item>
+    <item>Lyon</item>
+    <item>Chambéry</item>
+  </string-array>
+  <string-array name="cityValues">
+    <item>Grenoble</item>
+    <item>Lyon</item>
+    <item>Chambéry</item>
+  </string-array>
 </resources>
   

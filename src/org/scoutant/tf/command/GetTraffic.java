@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
+import org.scoutant.tf.model.Network;
 import org.scoutant.tf.model.Pixel;
 import org.scoutant.tf.model.Polyline;
 import org.scoutant.tf.model.Road;
@@ -20,12 +21,18 @@ public class GetTraffic extends HttpGetCommand {
 
 	@Override
 	public void execute() {
-		InputStream is = doGet ("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble");
+		for (Network network : Model.model().country.networks() ) {
+			// TODO only if visible!!
+			trafficFor( network);
+		}
+	}
+
+	private void trafficFor( Network network) {
+		InputStream is = doGet( network.url);
 		bitmap = BitmapFactory.decodeStream(is);
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
-		// TODO Do loop over all networks!
-		for( Road road : Model.model().country.network(0).roads()) {
+		for( Road road : network.roads()) {
 			Polyline polyline = road.polyline;
 			// TODO ok?
 			polyline.reset();
