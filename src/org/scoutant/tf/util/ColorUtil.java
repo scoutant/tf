@@ -1,9 +1,12 @@
 package org.scoutant.tf.util;
 
 import android.graphics.Color;
+import android.util.Log;
 
 public class ColorUtil {
 	
+	private static final String tag = "util";
+
 	public static int color(int bfColor) {
 		switch (bfColor) {
 		case -16711936: return Color.rgb(51, 187, 0); 
@@ -15,6 +18,7 @@ public class ColorUtil {
 		// Gray stands for unknow at Bison Futé. extrapolate to last know?
 		case -9407614: return Color.WHITE; 
 		default:
+			Log.e(tag, "ERROR : Bad PNG color extraction... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			return Color.GRAY;
 		}
 	}
