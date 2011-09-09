@@ -2,7 +2,6 @@ package org.scoutant.tf.model;
 
 public class Pixel {
 
-	
 	public Pixel(int x, int y) {
 		this.x = x;
 		this.y =y ;
@@ -24,6 +23,9 @@ public class Pixel {
 		this.lng = lng;
 	}
 	
+	public Pixel(int x, int y, LatLng p) {
+		this(x, y, p.lat(), p.lng());
+	}
 	
 	public String toString() {
 		return "(" + x +"," + y + ") : " + color;
@@ -33,7 +35,6 @@ public class Pixel {
 	public static double distance( Pixel a, Pixel z) {
 		return Math.sqrt( (z.x-a.x)*(z.x-a.x) + (z.y-a.y)*(z.y-a.y)); 
 	}
-	
 	
 	
 }

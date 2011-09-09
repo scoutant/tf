@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -29,7 +30,7 @@ public class TrafficOverlay extends Overlay {
 
 	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
-		paint.setStrokeWidth(4.5f);
+		paint.setStrokeWidth(5.5f);
 		paint.setColor( Color.MAGENTA);
 		paint.setAntiAlias(true);
 	}
@@ -62,7 +63,7 @@ public class TrafficOverlay extends Overlay {
 					lastNormal = new Point(p);
 					last = p;
 				} else {
-					Point o = MapUtils.offset(lastNormal, p, 4);
+					Point o = MapUtils.offset(lastNormal, p, 5);
 					// if null, hence too close, we just omit the point 
 					if (o!=null) {
 						lastNormal = new Point(p);
@@ -70,6 +71,9 @@ public class TrafficOverlay extends Overlay {
 						// TODO ok to extrapolate unknow gray color?
 						if (f.color != 0 && f.color != -9407614) {
 							color= ColorUtil.color(f.color);
+							if (color == Color.BLACK) {
+								Log.d(tag, "Color pb for point : " + p + ". color is " + f.color);
+							}
 						}
 						paint.setColor( color);
 						q++;

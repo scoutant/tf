@@ -3,8 +3,13 @@ package org.scoutant.tf.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scoutant.tf.util.LatLngUtils;
+
+import android.util.Log;
+
 public class Road {
 
+	private static final String tag = "model";
 	public Polyline polyline = null;
 	public String name;
 	
@@ -44,4 +49,33 @@ public class Road {
 		return str;
 	}
 
+	/** 
+	 * Adds a new Pixel(x,y) with the unique LatLng from polyline for which the 4 decimal of the latitude is given by @param lat04   
+	 */
+	public Road add( int x, int y, int lat04) {
+		LatLng f = find( lat04);
+		Log.d(tag, "adding (" + x + ", " + y + ") -------- " + f);		
+		this.add( new Pixel(x, y, f));
+		return this;
+	}
+	
+	// TODO refactor so as not check for unicity any longer once validated...
+	public LatLng find(int lat04) {
+		LatLng result = null;
+		for (LatLng p : polyline.points()) {
+			int v = LatLngUtils.lat04(p);
+//			Log.d(tag, " v : " + v);
+			if (v==lat04) {
+				if (result!=null) {
+					// not unique!
+					Log.e(tag, "!!!!!!!!!!!!!!!!!!!!!  Not unique LatLng lookup : " + lat04);
+					Log.e(tag, "!!! polyline is : " + polyline);
+					result = null;
+				}
+				result = p;
+			}
+		}
+		return result;
+	}
+	
 }

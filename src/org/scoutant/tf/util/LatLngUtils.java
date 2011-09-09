@@ -1,5 +1,7 @@
 package org.scoutant.tf.util;
 
+import java.util.regex.Pattern;
+
 import org.scoutant.tf.model.LatLng;
 
 import android.location.Location;
@@ -19,6 +21,18 @@ public class LatLngUtils {
 		if (a==z) return a;
 		double ratio = distance / distance(a, z);
 		return new LatLng((1-ratio)*a.lat()+ratio*z.lat() , (1-ratio)*a.lng()+ratio*z.lng());
+	}
+
+	/**
+	 * @return integer value with the 4 decimal of the latitude of provided @param p 
+	 */
+	public static int lat04( LatLng p) {
+		String str = ""+p.lat();
+		String dec = str.split( Pattern.quote("."))[1];
+		if (dec.length()<4) {
+			dec += (dec.length()==3 ? "0" : "00" );
+		}
+		return new Integer( dec.substring(0, 4));
 	}
 	
 }

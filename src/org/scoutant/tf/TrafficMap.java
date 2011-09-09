@@ -52,10 +52,12 @@ public class TrafficMap extends MapActivity {
 		mapController.setCenter( new LatLng(45.1794,5.7316) );
 		if (n!=null) {
 			Log.d(tag, "setting center to : " + n.center);
-			mapController.setCenter( n.center );
+//			mapController.setCenter( n.center );
+			mapController.animateTo( n.center );
 		}
 		// TODO adapt zoom against Network size?
         mapController.setZoom(13 );
+        
 	} 
 	  
 	@Override
