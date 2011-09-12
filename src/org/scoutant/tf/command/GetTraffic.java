@@ -41,13 +41,12 @@ public class GetTraffic extends HttpGetCommand {
 				int color = BitmapUtils.getPixel( bitmap, pixelTo.x, pixelTo.y);
 				pixelTo.color = color;
 				LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
-				Log.d(tag, "---------------------------------------------------------------");
-				Log.d(tag, "pixel : " + color);
+//				Log.d(tag, "---------------------------------------------------------------");
 				if (color==0) { 
 					Log.e(tag, "ERROR color null!!!!!!");
 					Log.d(tag, "pixelTo : " + pixelTo);
 				}
-				Log.d(tag, "pointTo : " + pointTo);
+				Log.d(tag, "pixel : " + pixelTo +", pointTo : " + pointTo);
 				if (pointTo==null) {
 					Log.e(tag, "Did not find corresponding latlng!! ");
 					return;
@@ -56,19 +55,18 @@ public class GetTraffic extends HttpGetCommand {
 				if (pixelFrom!=null) {
 					double pixelD = Pixel.distance(pixelFrom, pixelTo);
 					int n = new Double(pixelD).intValue()/5;
-					Log.d(tag, "pixelD: " + new Double(pixelD).intValue() + ", n = " + n);
+//					Log.d(tag, "pixelD: " + new Double(pixelD).intValue() + ", n = " + n);
 					int dx = pixelTo.x-pixelFrom.x;
 					int dy = pixelTo.y-pixelFrom.y;
 					double distance = polyline.distance(pointFrom, pointTo);
-					Log.d(tag, "distance: " + new Double(distance).intValue());
+//					Log.d(tag, "distance: " + new Double(distance).intValue());
 					for(int index=1; index<n; index++) {
 						Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
 						q.color = bitmap.getPixel( q.x, q.y);
 						// compute a matching point along polyline, by distance interpolation
 						LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
 						p.color = color;
-						Log.d(tag, "Point " + p);
-	//					Log.d(tag, "" + new Double((distance*index)/n).intValue() +" ---> " +q+ "  ---  " + p);
+//						Log.d(tag, "Point " + p);
 					}
 				}
 				pixelFrom=pixelTo;

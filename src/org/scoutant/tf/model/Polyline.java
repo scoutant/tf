@@ -96,11 +96,9 @@ public class Polyline {
 			d += delta;
 			if (d>=distance) {
 				if (delta > INTERPOLATE_DIST) {
-					Log.d(tag, "Caution long dist. Best to interpolate!");
 					LatLng between = LatLngUtils.interpolate(point(index), point(index+1), INTERPOLATE_DIST*0.85);
-					// TODO Necessary to interpolate several points? 
-					Log.d(tag, "inserting at position : " + (index+1) + ", point : " + between);
-//					Log.d(tag, ""+point(index) +", " +point(index+1));
+//					Log.d(tag, "Caution long dist. Best to interpolate!");
+//					Log.d(tag, "inserting at position : " + (index+1) + ", point : " + between);
 					_points.add(index+1, between);
 					return between;
 				} else {
@@ -108,6 +106,7 @@ public class Polyline {
 				}
 			}
 		}
+		Log.e(tag, "Bad interpolation along lolyline. a: " + a +", z: " + z);
 		return null;
 	}
 	

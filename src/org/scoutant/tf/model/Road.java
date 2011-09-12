@@ -68,8 +68,7 @@ public class Road {
 			if (v==lat04) {
 				if (result!=null) {
 					// not unique!
-					Log.e(tag, "!!!!!!!!!!!!!!!!!!!!!  Not unique LatLng lookup : " + lat04);
-					Log.e(tag, "!!! polyline is : " + polyline);
+					Log.e(tag, "!!! Not unique LatLng lookup : " + lat04);
 					result = null;
 				}
 				result = p;
