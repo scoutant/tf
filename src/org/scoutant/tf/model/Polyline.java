@@ -99,7 +99,9 @@ public class Polyline {
 					LatLng between = LatLngUtils.interpolate(point(index), point(index+1), INTERPOLATE_DIST*0.85);
 //					Log.d(tag, "Caution long dist. Best to interpolate!");
 //					Log.d(tag, "inserting at position : " + (index+1) + ", point : " + between);
-					_points.add(index+1, between);
+					synchronized (_points) {
+						_points.add(index+1, between);
+					}
 					return between;
 				} else {
 					return point(index);
@@ -126,5 +128,4 @@ public class Polyline {
 			p.color = 0;
 		}
 	}
-	
 }

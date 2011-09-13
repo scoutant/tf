@@ -1,7 +1,5 @@
 package org.scoutant.tf;
 
-import java.security.InvalidAlgorithmParameterException;
-
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.command.Init;
 import org.scoutant.tf.model.LatLng;
@@ -11,6 +9,7 @@ import org.scoutant.tf.overlay.TrafficOverlay;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -90,12 +89,29 @@ public class TrafficMap extends MapActivity {
 			mapController.animateTo( n.center );
 		}
 		mapView.invalidate();
-		// TODO Get traffic in a none UI thread...
-		new GetTraffic().execute( selected() );
+		new GetTrafficTask().execute( selected());
 		mapView.invalidate();
 	}
 	
 	public int selected() {
 		return new Integer( prefs.getString("city", "38"));
 	}
+	
+	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
+		@Override
+		protected Boolean doInBackground(Integer... params) {
+			Log.d(tag, "********************************************* thread *****************************************");
+			new GetTraffic().execute( selected() );
+//			mapView.invalidate();
+			return true;
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			mapView.invalidate();
+			super.onPostExecute(result);
+		}
+		
+	}
+	
 }

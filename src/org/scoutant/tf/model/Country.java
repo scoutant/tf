@@ -3,6 +3,8 @@ package org.scoutant.tf.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 /**
  * A Country is a set of networks. A network standing for a set of road around a city.
  */
@@ -37,6 +39,7 @@ public class Country {
 		return null;
 	}
 	public Network find(int id) {
+		Log.d("model", "looking for network : " + id);
 		for (Network n : _networks) {
 			if (n.id == id) {
 				return n;
