@@ -20,14 +20,15 @@ public class GetTraffic extends HttpGetCommand {
 	private Bitmap bitmap;
 
 	@Override
-	public void execute() {
-		for (Network network : Model.model().country.networks() ) {
-			// TODO only if visible!!
-			trafficFor( network);
-		}
+	public void execute(int id) {
+//		for (Network network : Model.model().country.networks() ) {
+			trafficFor( Model.model().country.find(id));
 	}
 
 	private void trafficFor( Network network) {
+		if (!network.done) {
+			new InitNetwork().execute(network.id);
+		}
 		InputStream is = doGet( network.url);
 		bitmap = BitmapFactory.decodeStream(is);
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());

@@ -36,5 +36,13 @@ public class Country {
 		}
 		return null;
 	}
+	public Network find(int id) {
+		for (Network n : _networks) {
+			if (n.id == id) {
+				return n;
+			}
+		}
+		return null;
+	}
 	
 }

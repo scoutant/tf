@@ -12,7 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.util.Log;
 
-public abstract class HttpGetCommand implements Command {
+public abstract class HttpGetCommand implements CommandWithInt {
 
 	private static final String tag = "http";
 	HttpClient client;
