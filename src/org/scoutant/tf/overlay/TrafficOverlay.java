@@ -11,6 +11,7 @@ import org.scoutant.tf.util.MapUtils;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Cap;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -33,6 +34,7 @@ public class TrafficOverlay extends Overlay {
 		paint.setStrokeWidth(5.5f);
 		paint.setColor( Color.MAGENTA);
 		paint.setAntiAlias(true);
+		paint.setStrokeCap(Cap.ROUND);
 	}
 
 	private void drawTraffic(Canvas canvas, MapView map) {
