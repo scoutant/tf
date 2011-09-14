@@ -88,9 +88,7 @@ public class TrafficMap extends MapActivity {
 			Log.d(tag, "setting center to : " + n.center);
 			mapController.animateTo( n.center );
 		}
-		mapView.invalidate();
 		new GetTrafficTask().execute( selected());
-		mapView.invalidate();
 	}
 	
 	public int selected() {
@@ -100,9 +98,8 @@ public class TrafficMap extends MapActivity {
 	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Integer... params) {
-			Log.d(tag, "********************************************* thread *****************************************");
+//			Log.d(tag, "********************************************* thread *****************************************");
 			new GetTraffic().execute( selected() );
-//			mapView.invalidate();
 			return true;
 		}
 		
