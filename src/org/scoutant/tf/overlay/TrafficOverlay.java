@@ -75,7 +75,7 @@ public class TrafficOverlay extends Overlay {
 						lastNormal = new Point(p);
 						p.offset(o.x, o.y);
 						// TODO ok to extrapolate unknow gray color?
-						if (f.color != 0 && f.color != -9407614) {
+						if (f.color != 0 && f.color != -9407614 && f.color != -1) {
 							color= ColorUtil.color(f.color);
 							if (color == Color.BLACK) {
 								Log.d(tag, "Color pb for point : " + p + ". color is " + f.color);

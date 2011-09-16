@@ -23,6 +23,9 @@ public class Init implements Command {
 		country.add( new Network("Grenoble", 38, 45.1794, 5.7316)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble")
 		);
+		country.add( new Network("Bordeaux", 38, 44.8375, -0.5795)
+		.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
+	);
 		Log.d(tag, ""+country);
 	}
 }
