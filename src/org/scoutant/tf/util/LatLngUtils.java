@@ -37,5 +37,16 @@ public class LatLngUtils {
 		}
 		return new Integer( dec.substring(0, 4));
 	}
+	/**
+	 * @return integer value with the 4 decimal of the latitude of provided @param p 
+	 */
+	public static int lng04( LatLng p) {
+		String str = ""+p.lng();
+		String dec = str.split( Pattern.quote("."))[1];
+		if (dec.length()<4) {
+			dec += (dec.length()==3 ? "0" : (dec.length()==2 ? "00" : "000" ) );
+		}
+		return new Integer( dec.substring(0, 4));
+	}
 	
 }

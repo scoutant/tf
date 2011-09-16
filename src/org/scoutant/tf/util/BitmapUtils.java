@@ -12,7 +12,7 @@ public class BitmapUtils {
 	private static final String tag = "util";
 
 	/**
-	 * if pixel happen to be 0 at position (x,y), try to detect color around...
+	 * if pixel happen to be 0 at position (x,y), detect color around and returns dominant color around.
 	 */
 	public static int getPixel( Bitmap bitmap, int x, int y){
 		int color = bitmap.getPixel(x, y);
@@ -21,7 +21,7 @@ public class BitmapUtils {
 		for (int i=-1; i<=1; i++) {
 			for (int j=-1; j<=1; j++) {
 				int c = bitmap.getPixel(x+i, y+j);
-//				Log.d(tag, "color was null for " +x +", " + y + ". We are looking arround and considered : " + c);
+//				Log.d(tag, "color was null for " +x +", " + y + ". We are looking around among: " + c);
 				if (c!=0) values.add(c);
 			}
 		}
@@ -29,7 +29,7 @@ public class BitmapUtils {
 			Log.e(tag, "Only null pixel!! arrond here : " + x +", " + y);
 			return Color.BLUE;
 		}
-		// what is the dominat value?
+		// what is the dominant value?
 		Collections.sort( values);
 		int dominant=0;
 		int occurences=0;

@@ -58,6 +58,12 @@ public class Road {
 		this.add( new Pixel(x, y, f));
 		return this;
 	}
+	public Road addlng( int x, int y, int lng04) {
+		LatLng f = findLng( lng04);
+		Log.d(tag, "adding (" + x + ", " + y + ") -------- " + f);		
+		this.add( new Pixel(x, y, f));
+		return this;
+	}
 	
 	// TODO refactor so as not check for unicity any longer once validated...
 	public LatLng find(int lat04) {
@@ -77,4 +83,22 @@ public class Road {
 		return result;
 	}
 	
+	// TODO refactor so as not check for unicity any longer once validated...
+	public LatLng findLng(int lng04) {
+		LatLng result = null;
+		for (LatLng p : polyline.points()) {
+			int v = LatLngUtils.lng04(p);
+			if (v==lng04) {
+				if (result!=null) {
+					// not unique!
+					Log.e(tag, "!!! Not unique LatLng lookup : " + lng04);
+					result = null;
+				}
+				result = p;
+			}
+		}
+		return result;
+	}
+
+
 }

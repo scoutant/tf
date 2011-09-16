@@ -44,7 +44,11 @@ public class TrafficOverlay extends Overlay {
 	}
 	private void drawNetwork(Canvas canvas, MapView map, Network network) {
 		for(Road road : network.roads()) {
-			drawPolyline(canvas, map, road.polyline);
+			try {
+				drawPolyline(canvas, map, road.polyline);
+			} catch (Exception e) {
+				Log.e(tag, "************************ Concurent modification exception : skipping the draw for : " + road.name);
+			}
 		}
 	}
 	
