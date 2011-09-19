@@ -43,18 +43,21 @@ public class TrafficMap extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         Spinner s = (Spinner) findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
+        s.setSelection( selected());
         s.setOnItemSelectedListener( new OnItemSelectedListener() {
 			@Override
             public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
                 showToast("selected position : " + position + " id=" + id);
-                Log.d(tag, "Slected : " + adapter.getItem(position));
-        		Network n = Model.model().country.find( ""+adapter.getItem(position));
+                Log.d(tag, "Selected : " + adapter.getItem(position));
+        		Network n = Model.model().country.find( position);
         		if (n!=null) {
+        			saveSelected(position);
         			Log.d(tag, "setting center to : " + n.center);
         			mapController.animateTo( n.center );
         			new GetTrafficTask().execute( n.id);
@@ -65,7 +68,6 @@ public class TrafficMap extends MapActivity {
 			}
 		});
         
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
@@ -121,7 +123,13 @@ public class TrafficMap extends MapActivity {
 	}
 	
 	public int selected() {
-		return new Integer( prefs.getString("city", "38"));
+		return new Integer( prefs.getString("city", "1"));
+	}
+	
+	public void saveSelected(int id) {
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString("city", ""+id);
+		editor.commit();
 	}
 	
 	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {

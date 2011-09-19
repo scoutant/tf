@@ -47,5 +47,14 @@ public class Country {
 		}
 		return null;
 	}
+	public Network findByCode(int code) {
+		Log.d("model", "looking for network : " + code);
+		for (Network n : _networks) {
+			if (n.code == code) {
+				return n;
+			}
+		}
+		return null;
+	}
 	
 }

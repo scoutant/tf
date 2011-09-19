@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Network {
 
-	public static final int LYON = 69;
-	public static final int GRENOBLE = 38;
-	
 	public String name;
 	public int id;
+	public int code;
 	public boolean done =false;
 	public String url;
 	public LatLng center;
@@ -19,9 +17,10 @@ public class Network {
 		return this;
 	}
 	
-	public Network(String name, int id, double lat, double lng) {
+	public Network(String name, int id, int code, double lat, double lng) {
 		this.name = name;
 		this.id = id;
+		this.code = code;
 		center = new LatLng(lat, lng);
 	}
 	

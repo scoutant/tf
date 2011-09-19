@@ -26,7 +26,7 @@ public class GetTraffic extends HttpGetCommand {
 
 	private void trafficFor( Network network) {
 		if (!network.done) {
-			new InitNetwork().execute(network.id);
+			new InitNetwork().execute(network.code);
 		}
 		InputStream is = doGet( network.url);
 		bitmap = BitmapFactory.decodeStream(is);
@@ -65,7 +65,9 @@ public class GetTraffic extends HttpGetCommand {
 						q.color = bitmap.getPixel( q.x, q.y);
 						// compute a matching point along polyline, by distance interpolation
 						LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
-						p.color = color;
+						if (p!=null) {
+							p.color = color;
+						}
 //						Log.d(tag, "Point " + p);
 					}
 				}
