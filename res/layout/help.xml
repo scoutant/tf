@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	>
+	<LinearLayout 
+		android:layout_width="fill_parent" android:layout_height="fill_parent" 
+		android:orientation="vertical" 
+		>
+		<ImageView android:src="@drawable/tf" 
+			android:layout_width="140px" android:layout_height="140px"
+			android:layout_marginTop="20px"  
+			android:layout_gravity="center_horizontal"
+			/>
+		<TextView android:text="L'info trafic sur une carte Google Maps"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+		<!-- 
+		<ImageView android:src="@drawable/blokish_2_pieces" 
+			android:layout_width="242px" android:layout_height="191px"
+			android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center_horizontal" />
+		 -->	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="L'info frafic diretement présentée dans une carte Google Maps, pour une grade partie des villes françaises." 
+			/>	 		
+
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="- Mare de perdre du temps dans les bouchons?" 
+			/>	 		
+
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="- Frustrés de pas pouvoir naviguer dans les cartes schématiques de Bison Futé?
+			" 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Trafic Futé vous permet de consulter l'état de la circulation en un seul clic." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé." 
+			/>	 		
+
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Les données sont mises à jour en temps réel, grace au cartes publiés par Bison Futé." 
+			/>	 		
+		<TextView android:text="Logiciel libre, open-source"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="L'application Trafic Futé est gratuite. Et épurée de toute publicité." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Cetta application Android  vous est proposé en open-source : à télécharger depuis http://github.com/scoutant." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Logiciel libre en licence GPL v3. Donc vous êtes libres de télécharger le code source et de l'adapter à vos besoins. La seule contrepartie étant de publier votre code à votre tour. " 
+			/>	 		
+
+		<TextView android:text="Contacts"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Vous pouvez signaler des bugs ou émetre des suggestion à l'adresse : http://github.com/scoutant/tf/issues." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="" 
+			/>	 		
+	</LinearLayout>
+</ScrollView> 
+	

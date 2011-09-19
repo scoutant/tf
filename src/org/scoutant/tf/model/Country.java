@@ -39,7 +39,7 @@ public class Country {
 		return null;
 	}
 	public Network find(int id) {
-		Log.d("model", "looking for network : " + id);
+//		Log.d("model", "looking for network : " + id);
 		for (Network n : _networks) {
 			if (n.id == id) {
 				return n;
@@ -48,7 +48,7 @@ public class Country {
 		return null;
 	}
 	public Network findByCode(int code) {
-		Log.d("model", "looking for network : " + code);
+//		Log.d("model", "looking for network : " + code);
 		for (Network n : _networks) {
 			if (n.code == code) {
 				return n;

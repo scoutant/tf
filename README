@@ -1,0 +1,32 @@
+L'info frafic diretement présentée dans une carte Google Maps, pour une grade partie des villes françaises.
+
+- Mare de perdre du temps dans les bouchons?
+- Frustrés de pas pouvoir naviguer dans les cartes schématiques de Bison Futé?
+
+Trafic Futé vous permet de consulter l'état de la circulation en un seul clic.
+Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé.
+Les données sont mises à jour en temps réel, grace au cartes publiés par Bison Futé.
+
+Pour l'instant, les villes concernées sont les suivantes :
+31 - Toulouse,
+33 - Bordeaux,
+38 - Grenoble,
+69 - Lyon,
+73 - Chambéry/Annecy/Alberville 
+ 
+Effectivement, pas la Région parisienne... Cette région est particulièrement bien traitée par l'application web Sytadin, de la Direction Interdépartementale des Routes, d'Ile-de-France. 
+Depuis votre mobile vous pouvez notamment ouvrir directement les images :
+- http://www.sytadin.fr/raster/segment_Paris_A86.gif
+- http://www.sytadin.fr/raster/segment_Paris_BP.gif 
+
+  
+L'application Trafic Futé est gratuite. Et épurée de toute publicité. 
+
+
+Ce logiciel vous est propsé en open-source : à télécharger depuis http://github.com/scoutant.
+Logiciel libre en licence GPL v3. 
+Donc vous êtes libres de télécharger le code source et de l'adapter à vos besoins. La seule contrepartie étant de publier votre code à votre tour. 
+
+Vous pouvez signaler des bugs ou émetre des suggestion à l'adresse : http://github.com/scoutant/tf/issues
+
+Stephane Coutant, http://scoutant.org

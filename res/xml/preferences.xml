@@ -1,8 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<CheckBoxPreference 
-		android:key="withGps" android:title="Utiliser le GPS" android:summary="Pour recentrer la carte" 
+		android:key="withGps" android:title="Vous localiser via le GPS" android:summary="Ca mange la batterie..." 
 		android:defaultValue="false" />
+		
+	<!--  TODO Actualiser tous les 2 min, 5 min, 10 min -->
 
 	<ListPreference 
 		android:key="city" android:title="Ville" android:summary="Ou région"

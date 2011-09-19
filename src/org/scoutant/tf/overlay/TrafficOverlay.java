@@ -1,5 +1,7 @@
 package org.scoutant.tf.overlay;
 
+import java.util.ConcurrentModificationException;
+
 import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Network;
@@ -46,7 +48,7 @@ public class TrafficOverlay extends Overlay {
 		for(Road road : network.roads()) {
 			try {
 				drawPolyline(canvas, map, road.polyline);
-			} catch (Exception e) {
+			} catch (ConcurrentModificationException e) {
 				Log.e(tag, "************************ Concurent modification exception : skipping the draw for : " + road.name);
 			}
 		}

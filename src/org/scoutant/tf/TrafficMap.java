@@ -32,12 +32,13 @@ public class TrafficMap extends MapActivity {
 	private MapController mapController;
 	
 	static final int MENU_ITEM_PREFERENCES=-1;
-	static final int MENU_VIEW = 0;
+	static final int MENU_HELP = 0;
 	static final int MENU_REFRESH = 1;
 	private static final String tag = "activity";
 	public SharedPreferences prefs;
 	private Overlay overlay;
 	private ArrayAdapter<CharSequence> adapter;
+	private Spinner spinner;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,22 +46,20 @@ public class TrafficMap extends MapActivity {
         setContentView(R.layout.map);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Spinner s = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
-        s.setSelection( selected());
-        s.setOnItemSelectedListener( new OnItemSelectedListener() {
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener( new OnItemSelectedListener() {
 			@Override
             public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
-                showToast("selected position : " + position + " id=" + id);
-                Log.d(tag, "Selected : " + adapter.getItem(position));
+//                showToast("selected position : " + position + " id=" + id);
+//                Log.d(tag, "Selected : " + adapter.getItem(position));
         		Network n = Model.model().country.find( position);
         		if (n!=null) {
+//        			Log.d(tag, "saving selection : " + position);
         			saveSelected(position);
-        			Log.d(tag, "setting center to : " + n.center);
-        			mapController.animateTo( n.center );
-        			new GetTrafficTask().execute( n.id);
+        			refresh();
         		}
 			}
 			@Override
@@ -75,14 +74,16 @@ public class TrafficMap extends MapActivity {
 		mapView.getOverlays().add( overlay);
 		new Init().execute();
 		mapController.setCenter( new LatLng(45.1794,5.7316) );
-        mapController.setZoom(13 );
+        mapController.setZoom(12 );
 	  }
 
 	  
 	@Override
 	protected void onResume() {
 		super.onResume();
-		refresh();
+		Log.d(tag, "on resume...");
+        spinner.setSelection( selected());
+//		refresh();
 	} 
 	  
 	@Override
@@ -93,8 +94,8 @@ public class TrafficMap extends MapActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-//		menu.add(Menu.NONE, MENU_VIEW, Menu.NONE, "View").setIcon(android.R.drawable.ic_menu_view);
-		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Actualiser").setIcon(android.R.drawable.ic_menu_send);
+		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon(android.R.drawable.ic_menu_help);
+		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon(android.R.drawable.ic_menu_rotate);
 		menu.add(Menu.NONE, MENU_ITEM_PREFERENCES, Menu.NONE, "Paramètres").setIcon(android.R.drawable.ic_menu_preferences);
 		return true;
 	}
@@ -104,10 +105,11 @@ public class TrafficMap extends MapActivity {
 		if (id == MENU_ITEM_PREFERENCES) {
 			startActivity( new Intent(this, Settings.class));
 		}
-		if (id==MENU_VIEW){
-	        mapController.animateTo( new LatLng( 45.2069,5.7882) );
+		if (id==MENU_HELP){
+	        startActivity( new Intent(this, Help.class));
 		}
 		if (id==MENU_REFRESH){
+			Log.d(tag, "refreshing from menu...");
 			refresh();
 		}
 		return true;
@@ -116,7 +118,7 @@ public class TrafficMap extends MapActivity {
 	public void refresh() {
 		Network n = Model.model().country.find( selected() );
 		if (n!=null) {
-			Log.d(tag, "setting center to : " + n.center);
+//			Log.d(tag, "setting center to : " + n.center);
 			mapController.animateTo( n.center );
 		}
 		new GetTrafficTask().execute( selected());
@@ -135,7 +137,7 @@ public class TrafficMap extends MapActivity {
 	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Integer... params) {
-//			Log.d(tag, "********************************************* thread *****************************************");
+			Log.d(tag, "********************************************* THREAD *****************************************");
 			new GetTraffic().execute( selected() );
 			return true;
 		}

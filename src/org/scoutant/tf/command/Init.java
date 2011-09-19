@@ -26,6 +26,6 @@ public class Init implements Command {
 		country.add( new Network("Bordeaux", 0, 33, 44.8375, -0.5795)
 		.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
 	);
-		Log.d(tag, ""+country);
+//		Log.d(tag, ""+country);
 	}
 }
