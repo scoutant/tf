@@ -21,7 +21,6 @@ public class GetTraffic extends HttpGetCommand {
 
 	@Override
 	public void execute(int id) {
-//		for (Network network : Model.model().country.networks() ) {
 			trafficFor( Model.model().country.find(id));
 	}
 

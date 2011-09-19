@@ -69,6 +69,7 @@ public class InitNetwork implements CommandWithInt {
 				.add( 219, 189, 7904)
 				.add( 220, 205, 7807)
 				.add( 227, 215, 7738)
+				.add( 238, 224, 7622)
 				.add( 249, 234, 7515)
 				.add( 250, 241, 7479)
 				.add( 244, 252, 7310)

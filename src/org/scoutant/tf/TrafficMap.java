@@ -15,6 +15,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -31,12 +37,35 @@ public class TrafficMap extends MapActivity {
 	private static final String tag = "activity";
 	public SharedPreferences prefs;
 	private Overlay overlay;
+	private ArrayAdapter<CharSequence> adapter;
 	
-	  @Override
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Spinner s = (Spinner) findViewById(R.id.spinner);
+        adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+        s.setOnItemSelectedListener( new OnItemSelectedListener() {
+			@Override
+            public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
+                showToast("selected position : " + position + " id=" + id);
+                Log.d(tag, "Slected : " + adapter.getItem(position));
+        		Network n = Model.model().country.find( ""+adapter.getItem(position));
+        		if (n!=null) {
+        			Log.d(tag, "setting center to : " + n.center);
+        			mapController.animateTo( n.center );
+        			new GetTrafficTask().execute( n.id);
+        		}
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+        
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
@@ -110,5 +139,8 @@ public class TrafficMap extends MapActivity {
 		}
 		
 	}
+    void showToast(CharSequence msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 	
 }
