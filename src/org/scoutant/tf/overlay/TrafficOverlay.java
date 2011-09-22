@@ -33,7 +33,7 @@ public class TrafficOverlay extends Overlay {
 
 	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
-		paint.setStrokeWidth(5.5f);
+		paint.setStrokeWidth(4.5f);
 		paint.setColor( Color.MAGENTA);
 		paint.setAntiAlias(true);
 		paint.setStrokeCap(Cap.ROUND);
@@ -45,12 +45,16 @@ public class TrafficOverlay extends Overlay {
 		}
 	}
 	private void drawNetwork(Canvas canvas, MapView map, Network network) {
-		for(Road road : network.roads()) {
-			try {
-				drawPolyline(canvas, map, road.polyline);
-			} catch (ConcurrentModificationException e) {
-				Log.e(tag, "************************ Concurent modification exception : skipping the draw for : " + road.name);
+		try {
+			for(Road road : network.roads()) {
+				try {
+					drawPolyline(canvas, map, road.polyline);
+				} catch (ConcurrentModificationException e) {
+					Log.e(tag, "************************ Concurent modification exception : skipping road : " + road.name );
+				}
 			}
+		} catch (ConcurrentModificationException e) {
+			Log.e(tag, "************************ Concurent modification exception : skipping the full draw." );
 		}
 	}
 	

@@ -8,7 +8,6 @@ import android.util.Log;
 
 /**
  * During dev may use http://blog.scoutant.org/assets/markers.html
- *
  */
 public class Init implements Command {
 	private static final String tag = "command";
@@ -22,10 +21,9 @@ public class Init implements Command {
 		);
 		country.add( new Network("Grenoble", 1, 38, 45.1794, 5.7316)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble")
-		);
+ 		);
 		country.add( new Network("Bordeaux", 0, 33, 44.8375, -0.5795)
 		.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
 	);
-//		Log.d(tag, ""+country);
 	}
 }

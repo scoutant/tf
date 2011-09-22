@@ -7,11 +7,15 @@ import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Network;
 import org.scoutant.tf.overlay.TrafficOverlay;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +50,19 @@ public class TrafficMap extends MapActivity {
         setContentView(R.layout.map);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        if (isAirplaneModeOn(this)) {
+			new AlertDialog.Builder(this)
+			.setMessage("Pour utiliser cette application, il faut autoriser la connexion internet! Typiquement désactiver le mode 'Avion' \nAller dans Accueil > menu > paramètres > Sans fil et réseau > Mode avion.")
+			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+					}
+				})
+			.create()
+			.show();
+			return;
+        }
+        
         spinner = (Spinner) findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -53,11 +70,8 @@ public class TrafficMap extends MapActivity {
         spinner.setOnItemSelectedListener( new OnItemSelectedListener() {
 			@Override
             public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
-//                showToast("selected position : " + position + " id=" + id);
-//                Log.d(tag, "Selected : " + adapter.getItem(position));
         		Network n = Model.model().country.find( position);
         		if (n!=null) {
-//        			Log.d(tag, "saving selection : " + position);
         			saveSelected(position);
         			refresh();
         		}
@@ -74,7 +88,7 @@ public class TrafficMap extends MapActivity {
 		mapView.getOverlays().add( overlay);
 		new Init().execute();
 		mapController.setCenter( new LatLng(45.1794,5.7316) );
-        mapController.setZoom(12 );
+        mapController.setZoom(13 );
 	  }
 
 	  
@@ -83,7 +97,6 @@ public class TrafficMap extends MapActivity {
 		super.onResume();
 		Log.d(tag, "on resume...");
         spinner.setSelection( selected());
-//		refresh();
 	} 
 	  
 	@Override
@@ -109,7 +122,6 @@ public class TrafficMap extends MapActivity {
 	        startActivity( new Intent(this, Help.class));
 		}
 		if (id==MENU_REFRESH){
-			Log.d(tag, "refreshing from menu...");
 			refresh();
 		}
 		return true;
@@ -118,7 +130,6 @@ public class TrafficMap extends MapActivity {
 	public void refresh() {
 		Network n = Model.model().country.find( selected() );
 		if (n!=null) {
-//			Log.d(tag, "setting center to : " + n.center);
 			mapController.animateTo( n.center );
 		}
 		new GetTrafficTask().execute( selected());
@@ -149,8 +160,18 @@ public class TrafficMap extends MapActivity {
 		}
 		
 	}
-    void showToast(CharSequence msg) {
+    @SuppressWarnings("unused")
+	private void showToast(CharSequence msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Gets the state of Airplane Mode.
+     * @param context
+     * @return true if enabled.
+     */
+    private static boolean isAirplaneModeOn(Context context) {
+        return Settings.System.getInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) != 0;
     }
 	
 }

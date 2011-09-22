@@ -28,7 +28,7 @@ public class Network {
 		this.url = url;
 		return this;
 	}
-	
+
 	private List<Road> _roads = new ArrayList<Road>();
 	public Road road(int location) {
 		return _roads.get(location);

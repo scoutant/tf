@@ -29,6 +29,7 @@ public class GetTraffic extends HttpGetCommand {
 			new InitNetwork().execute(network.code);
 		}
 		InputStream is = doGet( network.url);
+		// TODO continue only if no network problem!!!!!!!!
 		bitmap = BitmapFactory.decodeStream(is);
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
