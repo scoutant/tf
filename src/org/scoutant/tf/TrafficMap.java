@@ -1,5 +1,8 @@
 package org.scoutant.tf;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.command.Init;
 import org.scoutant.tf.model.LatLng;
@@ -43,6 +46,7 @@ public class TrafficMap extends MapActivity {
 	private Overlay overlay;
 	private ArrayAdapter<CharSequence> adapter;
 	private Spinner spinner;
+	private Timer timer;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,8 @@ public class TrafficMap extends MapActivity {
 			.show();
 			return;
         }
+
+        timer = new Timer(true);
         
         spinner = (Spinner) findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
@@ -100,6 +106,13 @@ public class TrafficMap extends MapActivity {
 	} 
 	  
 	@Override
+	protected void onPause() {
+		timer.cancel();
+		timer.purge();
+		super.onPause();
+	}
+	
+	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
 	}
@@ -132,7 +145,12 @@ public class TrafficMap extends MapActivity {
 		if (n!=null) {
 			mapController.animateTo( n.center );
 		}
-		new GetTrafficTask().execute( selected());
+//		new GetTrafficTask().execute( selected());
+		timer.cancel();
+		timer.purge();
+		timer = new Timer(true);
+		// the web services are refreshed every 6 min. Here we are poling at half period.
+		timer.schedule( new RepetedGetTrafficTask(), 0, 3*60*1000);
 	}
 	
 	public int selected() {
@@ -145,21 +163,31 @@ public class TrafficMap extends MapActivity {
 		editor.commit();
 	}
 	
-	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
+//	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
+//		@Override
+//		protected Boolean doInBackground(Integer... params) {
+//			Log.d(tag, "********************************************* THREAD *****************************************");
+//			new GetTraffic().execute( selected() );
+//			return true;
+//		}
+//		@Override
+//		protected void onPostExecute(Boolean result) {
+//			mapView.invalidate();
+//			super.onPostExecute(result);
+//		}
+//	}
+	
+	private class RepetedGetTrafficTask extends TimerTask {
 		@Override
-		protected Boolean doInBackground(Integer... params) {
-			Log.d(tag, "********************************************* THREAD *****************************************");
+		public void run() {
+			Log.d(tag, "********************************************* THREAD by TIMER *****************************************");
 			new GetTraffic().execute( selected() );
-			return true;
-		}
-		
-		@Override
-		protected void onPostExecute(Boolean result) {
-			mapView.invalidate();
-			super.onPostExecute(result);
+			// And so as to perform an update on the UI thread :
+			mapView.postInvalidate();
 		}
 		
 	}
+	
     @SuppressWarnings("unused")
 	private void showToast(CharSequence msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
