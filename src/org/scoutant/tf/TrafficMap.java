@@ -15,7 +15,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -163,19 +162,6 @@ public class TrafficMap extends MapActivity {
 		editor.commit();
 	}
 	
-//	private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
-//		@Override
-//		protected Boolean doInBackground(Integer... params) {
-//			Log.d(tag, "********************************************* THREAD *****************************************");
-//			new GetTraffic().execute( selected() );
-//			return true;
-//		}
-//		@Override
-//		protected void onPostExecute(Boolean result) {
-//			mapView.invalidate();
-//			super.onPostExecute(result);
-//		}
-//	}
 	
 	private class RepetedGetTrafficTask extends TimerTask {
 		@Override
@@ -203,3 +189,17 @@ public class TrafficMap extends MapActivity {
     }
 	
 }
+
+
+//private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
+//@Override
+//protected Boolean doInBackground(Integer... params) {
+//	new GetTraffic().execute( selected() );
+//	return true;
+//}
+//@Override
+//protected void onPostExecute(Boolean result) {
+//	mapView.invalidate();
+//	super.onPostExecute(result);
+//}
+//}

@@ -20,7 +20,7 @@
 			android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center_horizontal" />
 		 -->	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="L'info frafic diretement présentée dans une carte Google Maps, pour une grade partie des villes françaises." 
+			android:text="L'info frafic directement présentée dans une carte Google Maps, pour une grande partie des villes françaises." 
 			/>	 		
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
@@ -38,9 +38,6 @@
 			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé." 
 			/>	 		
 
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Les données sont mises à jour en temps réel, grace au cartes publiés par Bison Futé." 
-			/>	 		
 		<TextView android:text="Logiciel libre, open-source"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_marginTop="16px" style="@style/h1" />	 		
@@ -60,7 +57,7 @@
 			android:layout_marginTop="16px" style="@style/h1" />	 		
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Vous pouvez signaler des bugs ou émetre des suggestion à l'adresse : http://github.com/scoutant/tf/issues." 
+			android:text="Vous pouvez signaler des bugs ou émettre des suggestions à l'adresse : http://github.com/scoutant/tf/issues." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="" 

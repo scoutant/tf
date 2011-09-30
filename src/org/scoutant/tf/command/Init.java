@@ -23,7 +23,14 @@ public class Init implements Command {
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble")
  		);
 		country.add( new Network("Bordeaux", 0, 33, 44.8375, -0.5795)
-		.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
-	);
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
+		);
+		country.add( new Network("Toulouse", 3, 31, 43.604, 1.447)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse")
+		);
+		country.add( new Network("Strasbourg", 4, 67, 48.567, 7.746)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg")
+		);
+		
 	}
 }
