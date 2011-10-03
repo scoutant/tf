@@ -29,7 +29,10 @@ public class GetTraffic extends HttpGetCommand {
 			new InitNetwork().execute(network.code);
 		}
 		InputStream is = doGet( network.url);
-		// TODO continue only if no network problem!!!!!!!!
+		if (is ==null) {
+			Log.e(tag, "skipping, for network error encontered with : " + network.name);
+			return;
+		}
 		bitmap = BitmapFactory.decodeStream(is);
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
@@ -42,7 +45,6 @@ public class GetTraffic extends HttpGetCommand {
 				int color = BitmapUtils.getPixel( bitmap, pixelTo.x, pixelTo.y);
 				pixelTo.color = color;
 				LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
-//				Log.d(tag, "---------------------------------------------------------------");
 				if (color==0) { 
 					Log.e(tag, "ERROR color null!!!!!!");
 					Log.d(tag, "pixelTo : " + pixelTo);

@@ -22,6 +22,7 @@ public abstract class HttpGetCommand implements CommandWithInt {
 	}
 
 	protected InputStream doGet(String url) {
+		InputStream is = null;
 		Log.i (tag, "GET : " + url);
 		HttpResponse response = null;
 		long before = new Date().getTime();
@@ -29,20 +30,23 @@ public abstract class HttpGetCommand implements CommandWithInt {
 			response = client.execute( new HttpGet( url));
 		} catch (ClientProtocolException e) {
 			Log.e(tag, "url : " + url, e);
+			return null;
 		} catch (IOException e) {
 			Log.e(tag, "url : " + url, e);
+			return null;
 		}
 		
 		int code = response.getStatusLine().getStatusCode();
 		Log.d(tag, "http status : " + code);
 		
-		InputStream is = null;
 		try {
 			is = response.getEntity().getContent();
 		} catch (IllegalStateException e) {
 			Log.e(tag, "url : " + url, e);
+			return null;
 		} catch (IOException e) {
 			Log.e(tag, "url : " + url, e);
+			return null;
 		}
 		long duration = (new Date().getTime() - before);
 		Log.e(tag, "duration : " + duration + " ms");

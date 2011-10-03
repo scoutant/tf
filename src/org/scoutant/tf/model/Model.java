@@ -8,7 +8,5 @@ public class Model {
 		return _instance;
 	}
 
-//	public Polyline polyline;
 	public Country country = new Country();
-	
 }

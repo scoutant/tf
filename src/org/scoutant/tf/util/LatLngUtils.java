@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 import org.scoutant.tf.model.LatLng;
 
 import android.location.Location;
-import android.util.Log;
 
 public class LatLngUtils {
 

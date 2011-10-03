@@ -52,19 +52,7 @@ public class TrafficMap extends MapActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (isAirplaneModeOn(this)) {
-			new AlertDialog.Builder(this)
-			.setMessage("Pour utiliser cette application, il faut autoriser la connexion internet! Typiquement désactiver le mode 'Avion' \nAller dans Accueil > menu > paramètres > Sans fil et réseau > Mode avion.")
-			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					finish();
-					}
-				})
-			.create()
-			.show();
-			return;
-        }
+        
 
         timer = new Timer(true);
         
@@ -101,6 +89,18 @@ public class TrafficMap extends MapActivity {
 	protected void onResume() {
 		super.onResume();
 		Log.d(tag, "on resume...");
+        if (isAirplaneModeOn(this)) {
+			new AlertDialog.Builder(this)
+			.setMessage("Pour utiliser cette application, il faut autoriser la connexion internet! Typiquement désactiver le mode 'Avion' \nAller dans Accueil > menu > paramètres > Sans fil et réseau > Mode avion.")
+			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+					}
+				})
+			.create()
+			.show();
+			return;
+        }
         spinner.setSelection( selected());
 	} 
 	  

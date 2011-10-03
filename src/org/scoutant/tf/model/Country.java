@@ -3,8 +3,6 @@ package org.scoutant.tf.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 /**
  * A Country is a set of networks. A network standing for a set of road around a city.
  */
