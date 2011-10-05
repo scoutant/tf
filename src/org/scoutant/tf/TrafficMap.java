@@ -9,12 +9,14 @@ import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Network;
 import org.scoutant.tf.overlay.TrafficOverlay;
+import org.scoutant.tf.util.BusyIndicator;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -40,12 +42,14 @@ public class TrafficMap extends MapActivity {
 	static final int MENU_ITEM_PREFERENCES=-1;
 	static final int MENU_HELP = 0;
 	static final int MENU_REFRESH = 1;
+	static final int MENU_VOTE = 2;
 	private static final String tag = "activity";
 	public SharedPreferences prefs;
 	private Overlay overlay;
 	private ArrayAdapter<CharSequence> adapter;
 	private Spinner spinner;
 	private Timer timer;
+	private BusyIndicator indicator;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,10 @@ public class TrafficMap extends MapActivity {
 		new Init().execute();
 		mapController.setCenter( new LatLng(45.1794,5.7316) );
         mapController.setZoom(13 );
+
+        View progress = findViewById(R.id.ProgressBar);
+        indicator = new BusyIndicator(this, progress);
+//        indicator.show();
 	  }
 
 	  
@@ -108,6 +116,7 @@ public class TrafficMap extends MapActivity {
 	protected void onPause() {
 		timer.cancel();
 		timer.purge();
+		indicator.hide();
 		super.onPause();
 	}
 	
@@ -119,25 +128,31 @@ public class TrafficMap extends MapActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon(android.R.drawable.ic_menu_help);
-		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon(android.R.drawable.ic_menu_rotate);
-		menu.add(Menu.NONE, MENU_ITEM_PREFERENCES, Menu.NONE, "Paramètres").setIcon(android.R.drawable.ic_menu_preferences);
+		// icons from http://commons.wikimedia.org/wiki/Crystal_Clear, 
+		// With licence Creative Commons share Alike, CC BY-SA
+		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon( R.drawable.help_48);
+		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon( R.drawable.refresh_48);
+		menu.add(Menu.NONE, MENU_VOTE, Menu.NONE, "votre avis").setIcon( R.drawable.love_48);
+//		menu.add(Menu.NONE, MENU_ITEM_PREFERENCES, Menu.NONE, "Paramètres").setIcon( R.drawable.parameter_48);
 		return true;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == MENU_ITEM_PREFERENCES) {
-			startActivity( new Intent(this, Settings.class));
-		}
-		if (id==MENU_HELP){
+		if (id == MENU_ITEM_PREFERENCES) 
+			startActivity( new Intent(this, org.scoutant.tf.Settings.class));
+		if (id==MENU_HELP)
 	        startActivity( new Intent(this, Help.class));
-		}
-		if (id==MENU_REFRESH){
+		if (id==MENU_REFRESH)
 			refresh();
+		if (id==MENU_VOTE) {
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.scoutant.blokish")); 
+			startActivity(intent);
+			//	addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		}
 		return true;
 	}
+	
 	
 	public void refresh() {
 		Network n = Model.model().country.find( selected() );
@@ -167,8 +182,9 @@ public class TrafficMap extends MapActivity {
 		@Override
 		public void run() {
 			Log.d(tag, "********************************************* THREAD by TIMER *****************************************");
+			indicator.show();
 			new GetTraffic().execute( selected() );
-			// And so as to perform an update on the UI thread :
+			indicator.hide();
 			mapView.postInvalidate();
 		}
 		

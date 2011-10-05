@@ -7,14 +7,25 @@
         android:layout_width="fill_parent" android:layout_height="wrap_content"
         android:drawSelectorOnTop="true"
         android:prompt="@string/city_prompt"
+        android:visibility="visible"
     />
-	<com.google.android.maps.MapView
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:id="@+id/mapview"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:clickable="true"
-		android:apiKey="0G7OcJYtGyNTKq4osmdszxS8fSp1KETmvAlEMOA"
-	/>
+    <FrameLayout 
+	    android:layout_width="fill_parent"  android:layout_height="fill_parent"
+	    >
+		<com.google.android.maps.MapView
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:id="@+id/mapview"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:clickable="true"
+			android:apiKey="0G7OcJYtGyNTKq4osmdszxS8fSp1KETmvAlEMOA"
+			/>
+		<View android:id="@+id/ProgressBar"  
+			android:layout_width="76dp"  android:layout_height="76dp" 
+			android:layout_gravity="bottom|center"
+			android:layout_marginBottom="100dp" 
+			/>
+	    
+	</FrameLayout>
 </LinearLayout>
 	

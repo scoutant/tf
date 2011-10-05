@@ -38,6 +38,35 @@
 			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé." 
 			/>	 		
 
+		<TextView android:text="Les villes convertes en version 1.0"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Un peu d'indulgence pour cette première version. Seule quelques grandes villes sont convertes." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="31 Toulouse, 33 Bordeaux, 38 Grenoble, 67 Strasbourg et 69 Lyon..." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Très prochainement : Lille, Marseilles, Rennes, etc." 
+			/>	 	
+		<!-- 
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Vous pouvez éventuellement cocher la case 'installer automatiquement les mises-à-jours' dans la page Android Market de Trafic Futé." 
+			/>	 		
+		 -->	
+
+		<TextView android:text="Et l'Ile-de-France?"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Voilà, pour l'Ile-de-France, les cartes proposées par Sytadin sont particulièrement détaillées. Non pas dans une Google Map, mais avec beaucoup de détails." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Suivre : http://www.sytadin.fr" 
+			/>	 		
+
+
 		<TextView android:text="Logiciel libre, open-source"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_marginTop="16px" style="@style/h1" />	 		

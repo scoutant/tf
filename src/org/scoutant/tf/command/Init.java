@@ -16,21 +16,16 @@ public class Init implements Command {
 	@Override
 	public void execute() {
 		Log.d(tag, "***************************************************************************************");
-		country.add( new Network("Lyon", 2, 69, 45.763, 4.91)
-			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon")
-		);
-		country.add( new Network("Grenoble", 1, 38, 45.1794, 5.7316)
-			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble")
- 		);
-		country.add( new Network("Bordeaux", 0, 33, 44.8375, -0.5795)
-			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux")
-		);
-		country.add( new Network("Toulouse", 3, 31, 43.604, 1.447)
-			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse")
-		);
-		country.add( new Network("Strasbourg", 4, 67, 48.567, 7.746)
-			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg")
-		);
+		country.add( new Network("Toulouse", 0, 31, 43.604, 1.447)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse"));
+		country.add( new Network("Bordeaux", 1, 33, 44.8375, -0.5795)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux"));
+		country.add( new Network("Grenoble", 2, 38, 45.1794, 5.7316)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble"));
+		country.add( new Network("Strasbourg", 3, 67, 48.567, 7.746)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg"));
+		country.add( new Network("Lyon", 4, 69, 45.763, 4.91)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
 		
 	}
 }
