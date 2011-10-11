@@ -30,10 +30,14 @@ public class GetTraffic extends HttpGetCommand {
 		}
 		InputStream is = doGet( network.url);
 		if (is ==null) {
-			Log.e(tag, "skipping, for network error encontered with : " + network.name);
+			Log.e(tag, "skipping (is), for network error encontered with : " + network.name);
 			return;
 		}
 		bitmap = BitmapFactory.decodeStream(is);
+		if (bitmap ==null) {
+			Log.e(tag, "skipping (bitmap), for network error encontered with : " + network.name);
+			return;
+		}
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
 		for( Road road : network.roads()) {

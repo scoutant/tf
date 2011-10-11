@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.scoutant.tf"
       android:versionCode="1" android:versionName="1.0">
-    <application android:icon="@drawable/tf" android:label="AAA"
+    <application android:icon="@drawable/tf" android:label="Trafic Futé"
     	android:debuggable="true" >
     	<uses-library android:name="com.google.android.maps" />
         <activity android:name="TrafficMap" android:label="Trafic Futé" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait" >

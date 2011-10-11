@@ -48,7 +48,9 @@ public class BusyIndicator {
 				view.setVisibility( View.VISIBLE);
 				if(BusyIndicator.this.visible){
 					view.setBackgroundDrawable(drawable);
-					view.startAnimation(animation);
+					if(view.getAnimation() == null){
+						view.startAnimation(animation);
+					}
 				}
 			}
 		});

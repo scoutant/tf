@@ -21,9 +21,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -50,6 +52,7 @@ public class TrafficMap extends MapActivity {
 	private Spinner spinner;
 	private Timer timer;
 	private BusyIndicator indicator;
+	private Toast toast;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,11 @@ public class TrafficMap extends MapActivity {
 
         View progress = findViewById(R.id.ProgressBar);
         indicator = new BusyIndicator(this, progress);
-//        indicator.show();
+        
+    	toast = new Toast(this);
+    	toast.setView( getLayoutInflater().inflate(R.layout.wellcome_toast, (ViewGroup) findViewById(R.id.toast)));
+    	toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 200);
+    	toast.setDuration(Toast.LENGTH_SHORT);
 	  }
 
 	  
@@ -97,6 +104,7 @@ public class TrafficMap extends MapActivity {
 	protected void onResume() {
 		super.onResume();
 		Log.d(tag, "on resume...");
+		showToast(null);
         if (isAirplaneModeOn(this)) {
 			new AlertDialog.Builder(this)
 			.setMessage("Pour utiliser cette application, il faut autoriser la connexion internet! Typiquement désactiver le mode 'Avion' \nAller dans Accueil > menu > paramètres > Sans fil et réseau > Mode avion.")
@@ -131,7 +139,7 @@ public class TrafficMap extends MapActivity {
 		// icons from http://commons.wikimedia.org/wiki/Crystal_Clear, 
 		// With licence Creative Commons share Alike, CC BY-SA
 		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon( R.drawable.help_48);
-		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon( R.drawable.refresh_48);
+//		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon( R.drawable.refresh_48);
 		menu.add(Menu.NONE, MENU_VOTE, Menu.NONE, "votre avis").setIcon( R.drawable.love_48);
 //		menu.add(Menu.NONE, MENU_ITEM_PREFERENCES, Menu.NONE, "Paramètres").setIcon( R.drawable.parameter_48);
 		return true;
@@ -146,7 +154,7 @@ public class TrafficMap extends MapActivity {
 		if (id==MENU_REFRESH)
 			refresh();
 		if (id==MENU_VOTE) {
-			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.scoutant.blokish")); 
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=org.scoutant.tf")); 
 			startActivity(intent);
 			//	addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		}
@@ -190,9 +198,8 @@ public class TrafficMap extends MapActivity {
 		
 	}
 	
-    @SuppressWarnings("unused")
 	private void showToast(CharSequence msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    	toast.show();
     }
 
     /**
@@ -205,7 +212,6 @@ public class TrafficMap extends MapActivity {
     }
 	
 }
-
 
 //private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
 //@Override
