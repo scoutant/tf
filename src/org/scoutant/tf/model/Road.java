@@ -49,6 +49,16 @@ public class Road {
 		return str;
 	}
 
+	public Road addA( int x, int y) {
+		add( new Pixel( x, y, polyline.point( 0)));
+		return this;
+	}
+	public Road addZ( int x, int y) {
+		int nb = polyline.points().size();
+		add( new Pixel( x, y, polyline.point( nb-1)));
+		return this;
+	}
+
 	/** 
 	 * Adds a new Pixel(x,y) with the unique LatLng from polyline for which the 4 decimal of the latitude is given by @param lat04   
 	 */

@@ -18,11 +18,6 @@
 		<TextView android:text="L'info trafic sur une carte Google Map!"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_marginTop="16px" style="@style/h1" />	 		
-		<!-- 
-		<ImageView android:src="@drawable/blokish_2_pieces" 
-			android:layout_width="242px" android:layout_height="191px"
-			android:layout_marginTop="10px" android:layout_marginBottom="10px" android:layout_gravity="center_horizontal" />
-		 -->	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="L'info frafic directement présentée dans une carte Google Maps, pour une grande partie des villes françaises." 
 			/>	 		
@@ -39,7 +34,13 @@
 			android:text="Trafic Futé vous permet de consulter l'état de la circulation en un seul clic." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé. Avec les code couleur:" 
+			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="http://trafic-fute.scoutant.org" 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Code couleur:" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="- vert : fluide" 
@@ -93,6 +94,22 @@
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Votre application mobile Trafic Futé, ne fait qu'afficher les données disponibles dans une Google Map..." 
+			/>	 		
+
+		<TextView android:text="Trafic Futé vs Google Maps + option Trafic"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginTop="16px" style="@style/h1" />	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Vous avez sans doutes déjà utilisé l'application Maps de Google sur votre téléphone Android. Il est possible d'avoir l'Info trafic." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Oui, vous aurez l'info trafic sur toutes les autoroutes. Car Google achète l'info trafic auprès des sociétés d'autoroute (AREA, ASF, Cofiroute, etc). Si vous êtes sur une autoroute, hors agglomération, l'information est pertinente." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Mais les bouchons, c'est en générale, dans et autour des agglomérations. Et ici l'information routière de Bison Futé est bien plus pertinente." 
+			/>	 		
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
+			android:text="Voila l'intérêt de votre application Trafic Futé, qui vous donne, dans une Google Maps, l'info routière de Bison Futé." 
 			/>	 		
 
 		<TextView android:text="Logiciel libre, open-source"
