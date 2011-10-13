@@ -6,6 +6,7 @@
     <item>38 - Grenoble</item>
     <item>67 - Strasbourg</item>
     <item>69 - Lyon</item>
+    <item>75 - Paris</item>
   </string-array>
   <string-array name="cityValues">
     <item>0</item>
@@ -13,6 +14,7 @@
     <item>2</item>
     <item>3</item>
     <item>4</item>
+    <item>5</item>
   </string-array>
 </resources>
   

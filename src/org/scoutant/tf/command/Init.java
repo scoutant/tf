@@ -26,6 +26,8 @@ public class Init implements Command {
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg"));
 		country.add( new Network("Lyon", 4, 69, 45.763, 4.91)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
+		// Bison Futé integrates data from Sytadin:
+		country.add( new Network("Paris, IdF", 5, 75, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
 	
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_allegro&source1=cir&raster=lille
