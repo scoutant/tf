@@ -26,6 +26,14 @@ public class Init implements Command {
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg"));
 		country.add( new Network("Lyon", 4, 69, 45.763, 4.91)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
-		
+	
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_allegro&source1=cir&raster=lille
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_nantes&source1=cir&raster=nantes
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_dor_breizh&source1=cir&raster=rennes
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulon&source1=cir&raster=toulon
+		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_stetienne&source1=cir&raster=stetienne
+		// http://www.sytadin.fr/raster/segment_IDF.gif
+		// speed : http://www.sytadin.fr/raster/arc_IDF.gif
 	}
 }
