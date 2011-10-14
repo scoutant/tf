@@ -63,25 +63,21 @@ public class TrafficOverlay extends Overlay {
 		Projection pj = map.getProjection();
 		Rect viewRect = MapUtils.toRectx2(map);
 		Point last = null;
-		Point lastNormal=null;
-		int q=0;
+		Point lastOnAxis=null;
 		int color=Color.GRAY;
 		for (LatLng f : polyline.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
 				Point p = new Point();
 				pj.toPixels(f, p);
-				if (last==null) {
-					lastNormal = new Point(p);
-					last = p;
+				if (lastOnAxis==null) {
+					lastOnAxis = new Point(p);
 				} else {
-					Point o = MapUtils.offset(lastNormal, p, 5);
-					// if null, hence too close, we just omit the point 
+					Point o = MapUtils.offset(lastOnAxis, p, 5);
+					// if null, hence too close, we just skip the point and consider next in the list 
 					if (o!=null) {
-						lastNormal = new Point(p);
+						lastOnAxis = new Point(p);
 						p.offset(o.x, o.y);
-						// TODO ok to extrapolate unknow gray color? NO on too long distance!!!
-//						if (f.color != 0 && f.color != -9407614 && f.color != -1) {
 						if (f.color != 0 && f.color != -1) {
 							color= ColorUtil.color(f.color);
 							if (color == Color.BLACK) {
@@ -89,8 +85,8 @@ public class TrafficOverlay extends Overlay {
 							}
 						}
 						paint.setColor( color);
-						q++;
-						canvas.drawLine(last.x, last.y, p.x, p.y, paint);
+						if (last!=null)
+							canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 						last = p;
 					}
 				}
