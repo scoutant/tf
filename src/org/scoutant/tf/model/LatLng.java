@@ -2,6 +2,8 @@ package org.scoutant.tf.model;
 
 import java.io.Serializable;
 
+import org.scoutant.tf.util.ColorUtil;
+
 import android.location.Location;
 
 import com.google.android.maps.GeoPoint;
@@ -32,7 +34,7 @@ public class LatLng extends GeoPoint implements Serializable{
 	public String toString(){
 		String str = "";
 		str += "(" + lat() + ", " + lng() +")";
-		if (color!=0) str += ",  color : " + color;
+		if (color!=0) str += ",  color : " + color +  ", " + ColorUtil.toRGB(color);
 		return str;
 	}
 	

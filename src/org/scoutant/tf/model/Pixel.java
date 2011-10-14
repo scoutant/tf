@@ -1,5 +1,9 @@
 package org.scoutant.tf.model;
 
+import org.scoutant.tf.util.ColorUtil;
+
+import android.graphics.Color;
+
 public class Pixel {
 
 	public Pixel(int x, int y) {
@@ -28,7 +32,7 @@ public class Pixel {
 	}
 	
 	public String toString() {
-		return "(" + x +"," + y + ") : " + color;
+		return "(" + x +"," + y + ") : " + color + ", " + ColorUtil.toRGB(color) + ", ";
 	}
 	
 	/** @return distance */ 

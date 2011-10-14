@@ -19,6 +19,7 @@ public class Road {
 	public List<Pixel> pixels() { return _pixels; }
 	
 	public Pixel pixel(int location ) { return _pixels.get(location); }
+
 	
 	public Road add(Pixel object) {
 		_pixels.add(object);
@@ -74,6 +75,11 @@ public class Road {
 		this.add( new Pixel(x, y, f));
 		return this;
 	}
+
+	public Road add( int x, int y, double lat, double lng) {
+		return add( new Pixel( x, y, lat, lng));
+	}
+	
 	
 	// TODO refactor so as not check for unicity any longer once validated...
 	public LatLng find(int lat04) {

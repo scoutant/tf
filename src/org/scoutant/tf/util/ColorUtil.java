@@ -14,22 +14,37 @@ public class ColorUtil {
 	
 	private static final String tag = "util";
 
-	
-	public static int color(int bfColor) {
-		switch (bfColor) {
-		case -16711936: return GREEN;
-		case -3394765: return GREEN; 
-		case -26368: return ORANGE;
-		case -6750208: return RED;
-		case -16776961: return RED;
-		case -65536: return RED;
-		case -52480: return RED;
-		// Gray stands for unknow at Bison Futé. let's use green, but somewhat different
-		case -9407614: return GREEN2; 
-		default:
-			Log.e(tag, "ERROR : Bad PNG color extraction... !!!!! Color is : " + bfColor);
-			return Color.BLACK;
-		}
+	public static int color(int color) {
+		float r = Color.red(color)+1;
+		float g = Color.green(color)+1;
+		float b = Color.blue(color)+1;
+		if (2*g>=3*r && g/b>=2) return GREEN;
+		if (r/g>4 && r/b>4) return RED;
+		if (r/b>=3 && g/b>=2 && r>g*1.2) return ORANGE;
+		if (r/b>0.8 && r/b<1.3 && g/b>0.8 && g/b<1.3) return Color.GRAY;
+//		Log.e(tag, "Warn : nok color extraction for: " + color + ". r : " + r +", g : " +g +", b : " + b);
+		return Color.BLACK;
 	}
-
+	
+	public static String toRGB(int color) {
+		return "[" + Color.red(color) + " | " +  Color.green(color) + " | " +  Color.blue(color) +  "]";
+	}
+	
 }
+
+//public static int color(int bfColor) {
+//	switch (bfColor) {
+//	case -16711936: return GREEN;
+//	case -3394765: return GREEN; 
+//	case -26368: return ORANGE;
+//	case -6750208: return RED;
+//	case -16776961: return RED;
+//	case -65536: return RED;
+//	case -52480: return RED;
+//	// Gray stands for unknow at Bison Futé. let's use green, but somewhat different
+//	case -9407614: return GREEN2; 
+//	default:
+//		Log.e(tag, "ERROR : Bad PNG color extraction... !!!!! Color is : " + bfColor);
+//		return Color.BLACK;
+//	}
+//}

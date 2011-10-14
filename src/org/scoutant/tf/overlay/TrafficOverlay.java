@@ -81,7 +81,7 @@ public class TrafficOverlay extends Overlay {
 						if (f.color != 0 && f.color != -1) {
 							color= ColorUtil.color(f.color);
 							if (color == Color.BLACK) {
-								Log.d(tag, "Color pb for point : " + p + ". color is " + f.color);
+//								Log.d(tag, "Color pb for point : " + p + ". color is " + f.color);
 							}
 						}
 						paint.setColor( color);

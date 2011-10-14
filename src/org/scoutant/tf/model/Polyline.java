@@ -108,7 +108,7 @@ public class Polyline {
 				}
 			}
 		}
-		Log.e(tag, "Bad interpolation along lolyline. a: " + a +", z: " + z);
+		Log.e(tag, "Bad interpolation along polyline. a: " + a +", z: " + z);
 		return null;
 	}
 	
