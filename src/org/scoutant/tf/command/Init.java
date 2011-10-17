@@ -36,6 +36,5 @@ public class Init implements Command {
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulon&source1=cir&raster=toulon
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_stetienne&source1=cir&raster=stetienne
 		// http://www.sytadin.fr/raster/segment_IDF.gif
-		// speed : http://www.sytadin.fr/raster/arc_IDF.gif
 	}
 }

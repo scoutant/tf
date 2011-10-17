@@ -55,7 +55,7 @@ public class GetTraffic extends HttpGetCommand {
 					Log.e(tag, "ERROR color null! pixelTo : " + pixelTo);
 				}
 				if (ColorUtil.color(color)==Color.BLACK) {
-					Log.e(tag, "ERROR color Blak (hence undefined) arround here?! pixelTo : " + pixelTo);					
+					Log.e(tag, "ERROR color Black - pixelTo : " + pixelTo);					
 				}
 				Log.d(tag, "pixel : " + pixelTo +", pointTo : " + pointTo);
 				if (pointTo==null) {

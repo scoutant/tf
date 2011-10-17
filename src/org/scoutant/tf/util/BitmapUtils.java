@@ -26,8 +26,8 @@ public class BitmapUtils {
 			}
 		}
 		if (values.size()==0) {
-			Log.e(tag, "Only null pixel!! arrond here : " + x +", " + y);
-			return Color.BLUE;
+			Log.e(tag, "ERROR - only null pixel arrond : " + x +", " + y);
+			return Color.BLACK;
 		}
 		// what is the dominant value?
 		Collections.sort( values);
@@ -40,7 +40,7 @@ public class BitmapUtils {
 				dominant = v;
 			}
 		}
-		Log.d(tag, "Yep, color is null for pixel " + x +", " + y +".  We looked arround and diminant color is : " + dominant);
+		Log.d(tag, "Color null for " + x +", " + y +".  dominant arround is : " + dominant);
 		return dominant;
 	}
 
