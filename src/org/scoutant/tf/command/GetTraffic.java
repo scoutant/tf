@@ -86,7 +86,7 @@ public class GetTraffic extends HttpGetCommand {
 								previousColor = q.color; 
 								p.color = q.color;
 							} else {
-								Log.e(tag, "Warn : nok color extraction for: " + q.color + ColorUtil.toRGB(q.color) + "we extrapolate agains previously interpolated");
+								Log.e(tag, "Warn : nok color extraction for: " + q.color + ColorUtil.toRGB(q.color) + ". We extrapolate against previously interpolated");
 								p.color = previousColor;
 							}
 //							Log.d(tag, "interpolating for point : " + p);

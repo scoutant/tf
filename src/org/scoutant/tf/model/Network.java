@@ -11,16 +11,18 @@ public class Network {
 	public boolean done =false;
 	public String url;
 	public LatLng center;
+	public int zoom;
 	
 	public Network done() {
 		this.done = true;
 		return this;
 	}
 	
-	public Network(String name, int id, int code, double lat, double lng) {
+	public Network(String name, int id, int code, int zoom, double lat, double lng) {
 		this.name = name;
 		this.id = id;
 		this.code = code;
+		this.zoom = zoom;
 		center = new LatLng(lat, lng);
 	}
 	

@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class Polyline {
 	
-	public static final double INTERPOLATE_DIST = 200;
+	public static final double INTERPOLATE_DIST = 300;
 	
 	private static final String tag = "model";
 	
@@ -98,7 +98,7 @@ public class Polyline {
 				if (delta > INTERPOLATE_DIST) {
 					LatLng between = LatLngUtils.interpolate(point(index), point(index+1), INTERPOLATE_DIST*0.85);
 //					Log.d(tag, "Caution long dist. Best to interpolate!");
-//					Log.d(tag, "inserting at position : " + (index+1) + ", point : " + between);
+					Log.d(tag, "inserting at position : " + (index+1) + ", point : " + between);
 					synchronized (_points) {
 						_points.add(index+1, between);
 					}

@@ -16,18 +16,18 @@ public class Init implements Command {
 	@Override
 	public void execute() {
 		Log.d(tag, "***************************************************************************************");
-		country.add( new Network("Toulouse", 0, 31, 43.604, 1.447)
+		country.add( new Network("Toulouse", 0, 31, 13, 43.604, 1.447)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse"));
-		country.add( new Network("Bordeaux", 1, 33, 44.8375, -0.5795)
+		country.add( new Network("Bordeaux", 1, 33, 13, 44.8375, -0.5795)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux"));
-		country.add( new Network("Grenoble", 2, 38, 45.1794, 5.7316)
+		country.add( new Network("Grenoble", 2, 38, 13, 45.1794, 5.7316)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble"));
-		country.add( new Network("Strasbourg", 3, 67, 48.567, 7.746)
+		country.add( new Network("Strasbourg", 3, 67, 13, 48.567, 7.746)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg"));
-		country.add( new Network("Lyon", 4, 69, 45.763, 4.91)
+		country.add( new Network("Lyon", 4, 69, 12, 45.763, 4.91)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
 		// Bison Futé integrates data from Sytadin:
-		country.add( new Network("Paris, IdF", 5, 75, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
+		country.add( new Network("Paris, IdF", 5, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
 	
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_allegro&source1=cir&raster=lille

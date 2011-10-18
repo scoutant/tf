@@ -117,7 +117,8 @@ public class TrafficMap extends MapActivity {
 			.show();
 			return;
         }
-        spinner.setSelection( selected());
+//        spinner.setSelection( selected());
+		refresh();
 	} 
 	  
 	@Override
@@ -165,9 +166,9 @@ public class TrafficMap extends MapActivity {
 	public void refresh() {
 		Network n = Model.model().country.find( selected() );
 		if (n!=null) {
+			mapController.setZoom( n.zoom);
 			mapController.animateTo( n.center );
 		}
-//		new GetTrafficTask().execute( selected());
 		timer.cancel();
 		timer.purge();
 		timer = new Timer(true);
