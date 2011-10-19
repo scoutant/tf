@@ -117,7 +117,7 @@ public class TrafficMap extends MapActivity {
 			.show();
 			return;
         }
-//        spinner.setSelection( selected());
+        spinner.setSelection( selected());
 		refresh();
 	} 
 	  
@@ -177,7 +177,8 @@ public class TrafficMap extends MapActivity {
 	}
 	
 	public int selected() {
-		return new Integer( prefs.getString("city", "1"));
+		// TODO keep Paris as default?
+		return new Integer( prefs.getString("city", "5"));
 	}
 	
 	public void saveSelected(int id) {
