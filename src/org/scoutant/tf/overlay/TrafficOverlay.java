@@ -10,6 +10,7 @@ import org.scoutant.tf.model.Road;
 import org.scoutant.tf.util.ColorUtil;
 import org.scoutant.tf.util.MapUtils;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,13 +26,16 @@ import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
 
 public class TrafficOverlay extends Overlay {
-	
+
+	public static final int SIZE = 64;
 	public static final int green = Color.rgb( 51, 187, 0);
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
+	private Activity activity;
 
-	public TrafficOverlay() {
+	public TrafficOverlay(Activity activity) {
+		this.activity = activity;
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(4.5f);
 		paint.setColor( Color.MAGENTA);
@@ -64,7 +68,7 @@ public class TrafficOverlay extends Overlay {
 		Rect viewRect = MapUtils.toRectx2(map);
 		Point last = null;
 		Point lastOnAxis=null;
-		int color=Color.GRAY;
+		int color=ColorUtil.GRAY;
 		for (LatLng f : polyline.points()) {
 			boolean visible = viewRect.contains(f.getLongitudeE6(), f.getLatitudeE6());
 			if (visible) {
@@ -80,10 +84,9 @@ public class TrafficOverlay extends Overlay {
 						p.offset(o.x, o.y);
 						if (f.color != 0 && f.color != -1) {
 							color= ColorUtil.color(f.color);
-							if (color == Color.BLACK) {
-//								Log.d(tag, "Color pb for point : " + p + ". color is " + f.color);
-							}
+//							if (color == Color.BLACK)
 						}
+						if (color == Color.BLACK) color = ColorUtil.GRAY;
 						paint.setColor( color);
 						if (last!=null)
 							canvas.drawLine(last.x, last.y, p.x, p.y, paint);
@@ -94,6 +97,7 @@ public class TrafficOverlay extends Overlay {
 		}
 	}
 	
+	
 	@Override
 	public void draw(Canvas canvas, MapView mapView, boolean shadow) {
 		if (shadow) return;
@@ -103,7 +107,11 @@ public class TrafficOverlay extends Overlay {
 	
 	@Override
 	public boolean onTap(GeoPoint p, MapView mapView) {
-		mapView.getController().zoomIn();
+		Point tap = new Point();
+		mapView.getProjection().toPixels(p, tap);
+		if (tap.x> mapView.getWidth()-SIZE && tap.y<SIZE) activity.openOptionsMenu();
+		if (tap.x<SIZE && tap.y<SIZE) mapView.getController().zoomIn();
+		if (tap.x<SIZE && SIZE<tap.y && tap.y<2*SIZE) mapView.getController().zoomOut();
 		return super.onTap(p, mapView);
 	}
 }

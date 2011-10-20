@@ -43,60 +43,69 @@ public class GetTraffic extends HttpGetCommand {
 		Log.d(tag, "width : " + bitmap.getWidth() +", height : " + bitmap.getHeight());
 
 		for( Road road : network.roads()) {
-			Polyline polyline = road.polyline;
-			polyline.reset();
-			Pixel pixelFrom = null;
-			LatLng pointFrom = null;
-			for (Pixel pixelTo : road.pixels()) {
-				int color = BitmapUtils.getPixel( bitmap, pixelTo.x, pixelTo.y);
-				pixelTo.color = color;
-				LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
-				if (color==0) { 
-					Log.e(tag, "ERROR color null! pixelTo : " + pixelTo);
-				}
-				if (ColorUtil.color(color)==Color.BLACK) {
-					Log.e(tag, "ERROR color Black - pixelTo : " + pixelTo);					
-				}
-				Log.d(tag, "pixel : " + pixelTo +", pointTo : " + pointTo);
-				if (pointTo==null) {
-					Log.e(tag, "Did not find corresponding latlng!! ");
-					return;
-				}
-				pointTo.color = color;
-				int previousColor = color;
-				if (pixelFrom!=null) {
-					double pixelD = Pixel.distance(pixelFrom, pixelTo);
-					int n = new Double(pixelD).intValue()/5;
-//					Log.d(tag, "pixelD: " + new Double(pixelD).intValue() + ", n = " + n);
-					int dx = pixelTo.x-pixelFrom.x;
-					int dy = pixelTo.y-pixelFrom.y;
-					double distance = polyline.distance(pointFrom, pointTo);
-//					Log.d(tag, "distance: " + new Double(distance).intValue());
-					for(int index=1; index<n; index++) {
-						Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
-						// TODO refactor with BitmapUtils.getPixel?
-//						q.color = bitmap.getPixel( q.x, q.y);
-						q.color = BitmapUtils.getPixel( bitmap, q.x, q.y);
-						// compute a matching point along polyline, by distance interpolation
-						LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
-						if (p!=null) {
-							// Fix! If interpolated point has acceptable color, consider it! if not consider previous point's color
-//							p.color = color;
-							if (q.color!= Color.BLACK) {
-								previousColor = q.color; 
-								p.color = q.color;
-							} else {
-								Log.e(tag, "Warn : nok color extraction for: " + q.color + ColorUtil.toRGB(q.color) + ". We extrapolate against previously interpolated");
-								p.color = previousColor;
-							}
-//							Log.d(tag, "interpolating for point : " + p);
-						}
-					}
-				}
-				pixelFrom=pixelTo;
-				pointFrom=pointTo;
-			}
 			Log.d(tag, "road is now : " + road);
+			try {
+				trafficFor(road);
+			} catch (Exception e) {
+				Log.e(tag, "*********************************** could not process road : " + road , e);
+			}
 		}
 	}
+	
+	private void trafficFor( Road  road) {
+		Polyline polyline = road.polyline;
+		polyline.reset();
+		Pixel pixelFrom = null;
+		LatLng pointFrom = null;
+		for (Pixel pixelTo : road.pixels()) {
+			int color = BitmapUtils.getPixel( bitmap, pixelTo.x, pixelTo.y);
+			pixelTo.color = color;
+			LatLng pointTo = road.polyline.point( pixelTo.lat, pixelTo.lng);
+			if (color==0) { 
+				Log.e(tag, "ERROR color null! pixelTo : " + pixelTo);
+			}
+			if (ColorUtil.color(color)==Color.BLACK) {
+				Log.e(tag, "ERROR color Black - pixelTo : " + pixelTo);					
+			}
+			Log.d(tag, "pixel : " + pixelTo +", pointTo : " + pointTo);
+			if (pointTo==null) {
+				Log.e(tag, "Did not find corresponding latlng!! ");
+				return;
+			}
+			pointTo.color = color;
+			int previousColor = color;
+			if (pixelFrom!=null) {
+				double pixelD = Pixel.distance(pixelFrom, pixelTo);
+				int n = new Double(pixelD).intValue()/5;
+	//			Log.d(tag, "pixelD: " + new Double(pixelD).intValue() + ", n = " + n);
+				int dx = pixelTo.x-pixelFrom.x;
+				int dy = pixelTo.y-pixelFrom.y;
+				double distance = polyline.distance(pointFrom, pointTo);
+	//			Log.d(tag, "distance: " + new Double(distance).intValue());
+				for(int index=1; index<n; index++) {
+					Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
+					// TODO refactor with BitmapUtils.getPixel?
+	//				q.color = bitmap.getPixel( q.x, q.y);
+					q.color = BitmapUtils.getPixel( bitmap, q.x, q.y);
+					// compute a matching point along polyline, by distance interpolation
+					LatLng p = polyline.interpolate(pointFrom, pointTo, (distance*index)/n);
+					if (p!=null) {
+						// Fix! If interpolated point has acceptable color, consider it! if not consider previous point's color
+	//					p.color = color;
+						if (q.color!= Color.BLACK) {
+							previousColor = q.color; 
+							p.color = q.color;
+						} else {
+							Log.e(tag, "Warn : nok color extraction for: " + q.color + ColorUtil.toRGB(q.color) + ". We extrapolate against previously interpolated");
+							p.color = previousColor;
+						}
+	//					Log.d(tag, "interpolating for point : " + p);
+					}
+				}
+			}
+			pixelFrom=pixelTo;
+			pointFrom=pointTo;
+		}
+	}
+
 }

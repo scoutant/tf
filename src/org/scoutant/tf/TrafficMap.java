@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -58,38 +59,28 @@ public class TrafficMap extends MapActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+        ((ImageView) findViewById(R.id.help)).setAlpha(112);
+        ((ImageView) findViewById(R.id.plus)).setAlpha(112);
+        ((ImageView) findViewById(R.id.minus)).setAlpha(112);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        
-
+        Log.d(tag, "onCreate");
         timer = new Timer(true);
         
         spinner = (Spinner) findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener( new OnItemSelectedListener() {
-			@Override
-            public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
-        		Network n = Model.model().country.find( position);
-        		if (n!=null) {
-        			saveSelected(position);
-        			refresh();
-        		}
-			}
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}
-		});
         
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        overlay = new TrafficOverlay();
+        overlay = new TrafficOverlay(this);
 		mapView.getOverlays().add( overlay);
 		new Init().execute();
 		mapController.setCenter( new LatLng(45.1794,5.7316) );
         mapController.setZoom(13 );
-
+        mapView.setBuiltInZoomControls(false);
+        
         View progress = findViewById(R.id.ProgressBar);
         indicator = new BusyIndicator(this, progress);
         
@@ -117,16 +108,40 @@ public class TrafficMap extends MapActivity {
 			.show();
 			return;
         }
-        spinner.setSelection( selected());
-		refresh();
+        spinner.setSelection( preferred());
+        if (spinner.getOnItemSelectedListener()!=null) {
+        	refresh();
+        } else {
+        	// Yes, setting the listener will trigger it! How come?
+	        spinner.setOnItemSelectedListener( new OnItemSelectedListener() {
+				@Override
+	            public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
+	        		Network n = Model.model().country.find( position);
+	        		if (n!=null) {
+	        			saveSelected(position);
+	        			refresh();
+	        		}
+				}
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					Log.d(tag, "nothing selected or no different selection? ");
+				}
+	        });
+        }
 	} 
 	  
 	@Override
 	protected void onPause() {
+		Log.d(tag, "onPause");
 		timer.cancel();
 		timer.purge();
 		indicator.hide();
 		super.onPause();
+	}
+	@Override
+	protected void onDestroy() {
+		Log.d(tag, "onDestroy");
+		super.onDestroy();
 	}
 	
 	@Override
@@ -134,11 +149,12 @@ public class TrafficMap extends MapActivity {
 		return false;
 	}
 
+	/** 
+	 * Icons from http://commons.wikimedia.org/wiki/Crystal_Clear, With licence Creative Commons share Alike, CC BY-SA
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		// icons from http://commons.wikimedia.org/wiki/Crystal_Clear, 
-		// With licence Creative Commons share Alike, CC BY-SA
 		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon( R.drawable.help_48);
 //		menu.add(Menu.NONE, MENU_REFRESH, Menu.NONE, "Rafraichir").setIcon( R.drawable.refresh_48);
 		menu.add(Menu.NONE, MENU_VOTE, Menu.NONE, "votre avis").setIcon( R.drawable.love_48);
@@ -164,7 +180,7 @@ public class TrafficMap extends MapActivity {
 	
 	
 	public void refresh() {
-		Network n = Model.model().country.find( selected() );
+		Network n = Model.model().country.find( preferred() );
 		if (n!=null) {
 			mapController.setZoom( n.zoom);
 			mapController.animateTo( n.center );
@@ -176,15 +192,16 @@ public class TrafficMap extends MapActivity {
 		timer.schedule( new RepetedGetTrafficTask(), 0, 3*60*1000);
 	}
 	
-	public int selected() {
-		// TODO keep Paris as default?
-		return new Integer( prefs.getString("city", "5"));
+	public int preferred() {
+		// Grenoble as default...
+		return new Integer( prefs.getString("city", "2"));
 	}
 	
 	public void saveSelected(int id) {
 		SharedPreferences.Editor editor = prefs.edit();
 		editor.putString("city", ""+id);
 		editor.commit();
+		Log.d(tag, "saving preference : " + id);
 	}
 	
 	
@@ -193,7 +210,11 @@ public class TrafficMap extends MapActivity {
 		public void run() {
 			Log.d(tag, "********************************************* THREAD by TIMER *****************************************");
 			indicator.show();
-			new GetTraffic().execute( selected() );
+			try {
+				new GetTraffic().execute( preferred() );
+			} catch (Exception e) {
+				Log.e(tag, "Could not get traffic for : " + preferred(), e);
+			}
 			indicator.hide();
 			mapView.postInvalidate();
 		}
@@ -214,16 +235,3 @@ public class TrafficMap extends MapActivity {
     }
 	
 }
-
-//private class GetTrafficTask extends AsyncTask<Integer, Void, Boolean> {
-//@Override
-//protected Boolean doInBackground(Integer... params) {
-//	new GetTraffic().execute( selected() );
-//	return true;
-//}
-//@Override
-//protected void onPostExecute(Boolean result) {
-//	mapView.invalidate();
-//	super.onPostExecute(result);
-//}
-//}

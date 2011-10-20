@@ -1,7 +1,6 @@
 package org.scoutant.tf.util;
 
 import android.graphics.Color;
-import android.util.Log;
 
 public class ColorUtil {
 	
@@ -11,7 +10,9 @@ public class ColorUtil {
 	// Color.rgb( 255, 212, 38); // Orange
 	public static final int RED = Color.RED; 
 	// Color.rgb( 158, 11, 11); // Red used by Google
+	public static final int GRAY = Color.rgb( 192, 192, 192);
 	
+	@SuppressWarnings("unused")
 	private static final String tag = "util";
 
 	public static int color(int color) {
@@ -21,7 +22,9 @@ public class ColorUtil {
 		if (2*g>=3*r && g/b>=2) return GREEN;
 		if (r/g>4 && r/b>4) return RED;
 		if (r/b>=3 && g/b>=2 && r>g*1.2) return ORANGE;
-		if (r/b>0.8 && r/b<1.3 && g/b>0.8 && g/b<1.3) return Color.GRAY;
+		// at Sytadin, yellow stands for 'works', lets consider green
+		if (r>150 && g>150 && b<50) return GREEN;		
+		if (r/b>0.8 && r/b<1.3 && g/b>0.8 && g/b<1.3) return GRAY;
 //		Log.e(tag, "Warn : nok color extraction for: " + color + ". r : " + r +", g : " +g +", b : " + b);
 		return Color.BLACK;
 	}
