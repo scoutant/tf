@@ -11,7 +11,7 @@
 			android:layout_marginTop="20px"  
 			android:layout_gravity="center_horizontal"
 			/>
-		<ImageView android:src="@drawable/trafic_fute_black" 
+		<ImageView android:src="@drawable/trafic_fute_large" 
 			android:layout_width="500px" android:layout_height="120px"
 			android:layout_gravity="center_horizontal"
 			/>
@@ -31,13 +31,10 @@
 			" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Trafic Futé vous permet de consulter l'état de la circulation en un seul clic." 
+			android:text="Trafic Futé vous permet de consulter l'état de la circulation en un seul clic!" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé." 
-			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="http://trafic-fute.scoutant.org" 
+			android:text="Avec une interface de cartographie agréable : une vraie carte Google Maps, dans laquelle sont insérées les données de Bison Futé. Plus d'informations sur le site web http://trafic-fute.scoutant.org" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Code couleur:" 
@@ -46,42 +43,27 @@
 			android:text="- vert : fluide" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="- orange : chargé" 
+			android:text="- orange : ralentissement" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="- rouge : bouchons" 
+			android:text="- rouge : bouchon" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="- gris ou noir : inconnu" 
+			android:text="- gris : inconnu" 
 			/>	 		
 
-		<TextView android:text="Les villes convertes en version 1.0"
+		<TextView android:text="Couverture du réseau routier..."
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_marginTop="16px" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Un peu d'indulgence pour cette première version. Seules quelques grandes villes sont convertes." 
+			android:text="Seules quelques grandes villes sont convertes." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="31 Toulouse, 33 Bordeaux, 38 Grenoble, 67 Strasbourg et 69 Lyon..." 
+			android:text="31 Toulouse, 33 Bordeaux, 38 Grenoble, 67 Strasbourg et 69 Lyon et 75 Paris/IdF" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Très prochainement : Lille, Marseilles, Rennes, etc." 
+			android:text="Par la suite aussi : Lille, Marseilles, Rennes, etc." 
 			/>	 	
-		<!-- 
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Vous pouvez éventuellement cocher la case 'installer automatiquement les mises-à-jours' dans la page Android Market de Trafic Futé." 
-			/>	 		
-		 -->	
-
-		<TextView android:text="Et Paris / l'Ile-de-France?"
-			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Voilà, pour Paris ou l'Ile-de-France, les cartes proposées par Sytadin sont particulièrement détaillées. Non pas dans une Google Map, mais avec beaucoup de détails." 
-			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Suivre : http://www.sytadin.fr" 
-			/>	 		
 
 		<TextView android:text="Il n'y a pas tous les grands axes de ma ville..."
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -92,9 +74,6 @@
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Vous aurez le même constat, en regardant l'image affichée par le site web de Bison Futé. En définitive, les données sont manquantes." 
 			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Votre application mobile Trafic Futé, ne fait qu'afficher les données disponibles dans une Google Map..." 
-			/>	 		
 
 		<TextView android:text="Trafic Futé vs Google Maps + option Trafic"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -103,13 +82,13 @@
 			android:text="Vous avez sans doutes déjà utilisé l'application Maps de Google sur votre téléphone Android. Il est possible d'avoir l'Info trafic." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Oui, vous aurez l'info trafic sur toutes les autoroutes. Car Google achète l'info trafic auprès des sociétés d'autoroute (AREA, ASF, Cofiroute, etc). Si vous êtes sur une autoroute, hors agglomération, l'information est pertinente." 
+			android:text="Google achète l'info trafic auprès des sociétés d'autoroute (AREA, ASF, Cofiroute, etc). Si vous êtes sur une autoroute, hors agglomération, l'information est pertinente." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Mais les bouchons, c'est en générale, dans et autour des agglomérations. Et ici l'information routière de Bison Futé est bien plus pertinente." 
+			android:text="Mais plus souvent les bouchons sont dans les agglomérations." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Voila l'intérêt de votre application Trafic Futé, qui vous donne, dans une Google Maps, l'info routière de Bison Futé." 
+			android:text="Voila l'intérêt de votre application Trafic Futé, qui injecte l'information plus pertinente de Bison Futé dans une Google Maps." 
 			/>	 		
 
 		<TextView android:text="Logiciel libre, open-source"
@@ -117,16 +96,10 @@
 			android:layout_marginTop="16px" style="@style/h1" />	 		
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="L'application Trafic Futé est gratuite. Et épurée de toute publicité." 
+			android:text="L'application Trafic Futé est gratuite et épurée de toute publicité." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Cette application mobile vous est proposé en open-source : le code source de l'applicaiton peut être téléchargé depuis http://github.com/scoutant." 
-			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Logiciel libre en licence GPL v3. Donc vous êtes libres de télécharger le code source et de l'adapter à vos besoins." 
-			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="La seule contrepartie est de préserver ce droit ; et donc de publier votre code à votre tour. Eh, oui! C'est ce qu'on appelle le 'copyleft'" 
+			android:text="Cette application mobile vous est proposé en open-source : le code source de l'applicaiton peut être téléchargé depuis http://github.com/scoutant. Logiciel libre en licence GPL v3." 
 			/>	 		
 
 		<TextView android:text="Contacts"
@@ -135,9 +108,6 @@
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Vous pouvez signaler des bugs ou émettre des suggestions à l'adresse : http://github.com/scoutant/tf/issues." 
-			/>	 		
-		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="" 
 			/>	 		
 	</LinearLayout>
 </ScrollView> 

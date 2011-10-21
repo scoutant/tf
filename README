@@ -1,8 +1,8 @@
+Trafic Futé - a traffic information application, targetting cities in France.
 
+--
 
-
-
-L'info frafic directement présentée dans une carte Google Maps
+L'info trafic directement présentée dans une carte Google Maps
 
 - Mare de perdre du temps dans les bouchons?
 - Frustrés de pas pouvoir naviguer dans les cartes schématiques de Bison Futé?
@@ -28,14 +28,8 @@ Pour l'instant, cette application présente le trafic pour les villes suivantes 
 59 - Lille,
 67 - Strasbourg,
 69 - Lyon,
-73 - Chambéry/Annecy/Alberville 
+75 - Paris, Idf 
  
-Effectivement, pas la Région parisienne... 
-Cette région est particulièrement bien traitée par l'application web Sytadin, de la Direction Inter-départementale des Routes, d'Ile-de-France. 
-Depuis votre mobile vous pouvez notamment ouvrir directement les images :
-- http://www.sytadin.fr/raster/segment_Paris_A86.gif
-- http://www.sytadin.fr/raster/segment_Paris_BP.gif 
-
 
 Trafic Futé vs Google Maps + option Traffic
 Vous avez sans doutes déjà utilisé l'application Maps de Google sur votre téléphone Android. 

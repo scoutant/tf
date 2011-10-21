@@ -1,3 +1,15 @@
+/**
+* @author stephane coutant
+*
+* This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>
+*/
 package org.scoutant.tf;
 
 import java.util.Timer;
@@ -25,6 +37,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -54,14 +67,26 @@ public class TrafficMap extends MapActivity {
 	private Timer timer;
 	private BusyIndicator indicator;
 	private Toast toast;
-	
+	public static final int ALPHA=146;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
-        ((ImageView) findViewById(R.id.help)).setAlpha(112);
-        ((ImageView) findViewById(R.id.plus)).setAlpha(112);
-        ((ImageView) findViewById(R.id.minus)).setAlpha(112);
+        ((ImageView) findViewById(R.id.help)).setAlpha(ALPHA);
+        ((ImageView) findViewById(R.id.plus)).setAlpha(ALPHA);
+        ((ImageView) findViewById(R.id.minus)).setAlpha(ALPHA);
+        findViewById(R.id.minus).setOnClickListener( new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mapController.zoomOut();
+			}
+		});
+        findViewById(R.id.help).setOnClickListener( new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				openOptionsMenu();
+			}
+		});
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Log.d(tag, "onCreate");
         timer = new Timer(true);
@@ -74,7 +99,7 @@ public class TrafficMap extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        overlay = new TrafficOverlay(this);
+        overlay = new TrafficOverlay();
 		mapView.getOverlays().add( overlay);
 		new Init().execute();
 		mapController.setCenter( new LatLng(45.1794,5.7316) );

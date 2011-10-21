@@ -1,3 +1,15 @@
+/**
+* @author stephane coutant
+*
+* This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>
+*/
 package org.scoutant.tf.overlay;
 
 import java.util.ConcurrentModificationException;
@@ -10,7 +22,6 @@ import org.scoutant.tf.model.Road;
 import org.scoutant.tf.util.ColorUtil;
 import org.scoutant.tf.util.MapUtils;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -32,10 +43,8 @@ public class TrafficOverlay extends Overlay {
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
-	private Activity activity;
 
-	public TrafficOverlay(Activity activity) {
-		this.activity = activity;
+	public TrafficOverlay() {
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(4.5f);
 		paint.setColor( Color.MAGENTA);
@@ -107,11 +116,7 @@ public class TrafficOverlay extends Overlay {
 	
 	@Override
 	public boolean onTap(GeoPoint p, MapView mapView) {
-		Point tap = new Point();
-		mapView.getProjection().toPixels(p, tap);
-		if (tap.x> mapView.getWidth()-SIZE && tap.y<SIZE) activity.openOptionsMenu();
-		if (tap.x<SIZE && tap.y<SIZE) mapView.getController().zoomIn();
-		if (tap.x<SIZE && SIZE<tap.y && tap.y<2*SIZE) mapView.getController().zoomOut();
+		mapView.getController().zoomIn();
 		return super.onTap(p, mapView);
 	}
 }
