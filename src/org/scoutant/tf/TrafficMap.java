@@ -21,6 +21,7 @@ import org.scoutant.tf.model.LatLng;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Network;
 import org.scoutant.tf.overlay.TrafficOverlay;
+import org.scoutant.tf.util.AppRater;
 import org.scoutant.tf.util.BusyIndicator;
 
 import android.app.AlertDialog;
@@ -113,6 +114,8 @@ public class TrafficMap extends MapActivity {
     	toast.setView( getLayoutInflater().inflate(R.layout.wellcome_toast, (ViewGroup) findViewById(R.id.toast)));
     	toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 200);
     	toast.setDuration(Toast.LENGTH_SHORT);
+    	
+		AppRater.app_launched( this);    	
 	  }
 
 	  
