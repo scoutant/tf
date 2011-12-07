@@ -7,6 +7,7 @@
     <item>67 - Strasbourg</item>
     <item>69 - Lyon</item>
     <item>75 - Paris, IdF</item>
+    <item>35 - Rennes</item>
   </string-array>
   <string-array name="cityValues">
     <item>0</item>
@@ -15,6 +16,7 @@
     <item>3</item>
     <item>4</item>
     <item>5</item>
+    <item>6</item>
   </string-array>
 </resources>
   

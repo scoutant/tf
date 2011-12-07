@@ -40,13 +40,14 @@ public class Init implements Command {
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
 		// Bison Futé integrates data from Sytadin:
 		country.add( new Network("Paris, IdF", 5, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
-	
+
+		country.add( new Network("Rennes", 6, 35, 13, 48.1086, -1.663)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_dor_breizh&source1=cir&raster=rennes"));
+		
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_allegro&source1=cir&raster=lille
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_nantes&source1=cir&raster=nantes
-		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_dor_breizh&source1=cir&raster=rennes
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulon&source1=cir&raster=toulon
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_stetienne&source1=cir&raster=stetienne
-		// http://www.sytadin.fr/raster/segment_IDF.gif
 	}
 }

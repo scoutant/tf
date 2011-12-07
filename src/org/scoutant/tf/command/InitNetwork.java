@@ -12,6 +12,7 @@
 */
 package org.scoutant.tf.command;
 
+import org.scoutant.tf.command.network.InitRennes;
 import org.scoutant.tf.model.Country;
 import org.scoutant.tf.model.Model;
 import org.scoutant.tf.model.Pixel;
@@ -30,8 +31,8 @@ public class InitNetwork implements CommandWithInt {
 	@Override
 	public void execute(int id) {
 		Log.d(tag, ""+ id + "  ***************************************************************************************");
-		
 		switch ( id) {
+		case 35: new InitRennes().execute(); break;
 		case 69:
 			country.findByCode(69)
 			.done()

@@ -18,8 +18,11 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:clickable="true"
-			android:apiKey="0G7OcJYtGyNTkTe1XlMEArRCEX9idCi8kZNQf_w"
+			android:apiKey="0G7OcJYtGyNTKq4osmdszxS8fSp1KETmvAlEMOA"
 			/>
+		<!-- TODO, put right apiKey before publishing to Android Market 
+			android:apiKey="0G7OcJYtGyNTkTe1XlMEArRCEX9idCi8kZNQf_w"
+		 -->
 		<View android:id="@+id/ProgressBar"  
 			android:layout_width="76dp"  android:layout_height="76dp" 
 			android:layout_gravity="bottom|center"
