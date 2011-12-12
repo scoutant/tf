@@ -80,6 +80,9 @@ public class Road {
 		return add( new Pixel( x, y, lat, lng));
 	}
 	
+	public Road addlng( int x, int y, double lat, double lng) {
+		return add( x, y, lat, lng);
+	}
 	
 	// TODO refactor so as not check for unicity any longer once validated...
 	public LatLng find(int lat04) {

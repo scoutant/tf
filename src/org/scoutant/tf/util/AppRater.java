@@ -20,8 +20,8 @@ public class AppRater {
     private final static String APP_PNAME = "org.scoutant.tf";
     
     private final static int DAYS_UNTIL_PROMPT = 1;
-    private final static int LAUNCHES_UNTIL_PROMPT = 12;
-    
+    private final static int LAUNCHES_UNTIL_PROMPT = 10;
+
     public static void app_launched(Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
         if (prefs.getBoolean("dontshowagain", false)) { return ; }
