@@ -15,6 +15,7 @@ package org.scoutant.tf;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.scoutant.tf.adapter.NoScrollArrayAdater;
 import org.scoutant.tf.command.GetTraffic;
 import org.scoutant.tf.command.Init;
 import org.scoutant.tf.model.LatLng;
@@ -93,8 +94,10 @@ public class TrafficMap extends MapActivity {
         timer = new Timer(true);
         
         spinner = (Spinner) findViewById(R.id.spinner);
-        adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        adapter = ArrayAdapter.createFromResource( this, R.array.cityNames, android.R.layout.simple_spinner_item);
+        adapter = NoScrollArrayAdater.createFromResource( this, R.array.cityNames, R.layout.spinner_item);
+//        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource( R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
         
         mapView = (MapView) findViewById(R.id.mapview);
