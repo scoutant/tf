@@ -61,10 +61,10 @@
 			android:text="Seules quelques grandes villes sont convertes." 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="31 Toulouse, 33 Bordeaux, 35 Rennes, 38 Grenoble, 67 Strasbourg et 69 Lyon et 75 Paris/IdF" 
+			android:text="31 Toulouse, 33 Bordeaux, 35 Rennes, 38 Grenoble, 59 Lille, 67 Strasbourg et 69 Lyon et 75 Paris/IdF" 
 			/>	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
-			android:text="Par la suite aussi : Lille, Marseilles, Nantes, etc." 
+			android:text="Par la suite aussi : Marseilles, Nantes, Toulon, etc." 
 			/>	 	
 
 		<TextView android:text="Il n'y a pas tous les grands axes de ma ville..."

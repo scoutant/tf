@@ -19,5 +19,3 @@
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
 <!-- TODO put back right apiKey to map.xml -->
-<!-- TODO drop down list? -->
-<!-- TODO add AppRater -->
