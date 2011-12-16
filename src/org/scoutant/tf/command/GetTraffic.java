@@ -96,7 +96,6 @@ public class GetTraffic extends HttpGetCommand {
 	//			Log.d(tag, "distance: " + new Double(distance).intValue());
 				for(int index=1; index<n; index++) {
 					Pixel q = new Pixel(pixelFrom.x + index * dx/n, pixelFrom.y + index * dy/n);
-					// TODO refactor with BitmapUtils.getPixel?
 	//				q.color = bitmap.getPixel( q.x, q.y);
 					q.color = BitmapUtils.getPixel( bitmap, q.x, q.y);
 					// compute a matching point along polyline, by distance interpolation

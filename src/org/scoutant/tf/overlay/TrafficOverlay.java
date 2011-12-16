@@ -73,6 +73,7 @@ public class TrafficOverlay extends Overlay {
 	
 	private void drawPolyline(Canvas canvas, MapView map, Polyline polyline ) {
 		if (polyline==null || polyline.size()==0) return;
+//		Log.d(tag, "----------------------------------------------------------------------");
 		Projection pj = map.getProjection();
 		Rect viewRect = MapUtils.toRectx2(map);
 		Point last = null;
@@ -97,8 +98,10 @@ public class TrafficOverlay extends Overlay {
 						}
 						if (color == Color.BLACK) color = ColorUtil.GRAY;
 						paint.setColor( color);
-						if (last!=null)
+						if (last!=null) { 
 							canvas.drawLine(last.x, last.y, p.x, p.y, paint);
+//							Log.d(tag, ""+last.x+","+last.y+" - " + p.x +","+p.y+ " : " + ColorUtil.toRGB( paint));
+						}
 						last = p;
 					}
 				}
@@ -116,7 +119,8 @@ public class TrafficOverlay extends Overlay {
 	
 	@Override
 	public boolean onTap(GeoPoint p, MapView mapView) {
-		mapView.getController().zoomIn();
+		if (mapView.getZoomLevel()<18)
+			mapView.getController().zoomIn();
 		return super.onTap(p, mapView);
 	}
 }

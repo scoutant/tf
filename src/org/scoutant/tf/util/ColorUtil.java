@@ -1,6 +1,7 @@
 package org.scoutant.tf.util;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 
 public class ColorUtil {
 	
@@ -15,6 +16,7 @@ public class ColorUtil {
 	@SuppressWarnings("unused")
 	private static final String tag = "util";
 
+	// if color negative number?
 	public static int color(int color) {
 		float r = Color.red(color)+1;
 		float g = Color.green(color)+1;
@@ -32,7 +34,11 @@ public class ColorUtil {
 	public static String toRGB(int color) {
 		return "[" + Color.red(color) + " | " +  Color.green(color) + " | " +  Color.blue(color) +  "]";
 	}
-	
+
+	public static String toRGB(Paint paint) {
+		if (paint==null) return "null";
+		return toRGB(paint.getColor());
+	}
 }
 
 //public static int color(int bfColor) {
