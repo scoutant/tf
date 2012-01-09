@@ -30,15 +30,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,10 +72,12 @@ public class TrafficMap extends MapActivity {
 	private Timer timer;
 	private BusyIndicator indicator;
 	private Toast toast;
+	private Display display;
 	public static final int ALPHA=146;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         setContentView(R.layout.map);
         ((ImageView) findViewById(R.id.help)).setAlpha(ALPHA);
         ((ImageView) findViewById(R.id.plus)).setAlpha(ALPHA);
@@ -224,7 +229,7 @@ public class TrafficMap extends MapActivity {
 	}
 	
 	public int preferred() {
-		// Grenoble as default...
+		// Rennes, as n°2 in list arrays.xml, to be default...
 		return new Integer( prefs.getString("city", "2"));
 	}
 	
@@ -249,7 +254,6 @@ public class TrafficMap extends MapActivity {
 			indicator.hide();
 			mapView.postInvalidate();
 		}
-		
 	}
 	
 	private void showToast(CharSequence msg) {
@@ -265,4 +269,21 @@ public class TrafficMap extends MapActivity {
         return Settings.System.getInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) != 0;
     }
 	
+    /**
+     * On small and medium devices (smartphones, Galaxy Tab 7'') we'll display the spinner only in portrait mode.
+     * on tablets, the spinner is display in any case.
+     */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
+    	spinner.setVisibility( isTabletOrSmartphoneAsPortrait() ? View.VISIBLE  : View.GONE);
+    }
+    
+    private boolean isTabletOrSmartphoneAsPortrait() {
+//    	Log.d(tag, "height : " + display.getHeight() + ", width : " + display.getWidth());
+		if (display.getHeight() >= display.getWidth()) return true;		
+		if (display.getHeight() >= 720) return true;    	
+    	return false;
+    }
+    
 }

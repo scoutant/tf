@@ -18,10 +18,10 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:clickable="true"
-			android:apiKey="0G7OcJYtGyNTkTe1XlMEArRCEX9idCi8kZNQf_w"
+			android:apiKey="0G7OcJYtGyNTKq4osmdszxS8fSp1KETmvAlEMOA"
 			/>
 		<!-- TODO, put right apiKey before publishing to Android Market EMOA=debug and Qf_w=scoutant
-			android:apiKey="0G7OcJYtGyNTKq4osmdszxS8fSp1KETmvAlEMOA"
+			android:apiKey="0G7OcJYtGyNTkTe1XlMEArRCEX9idCi8kZNQf_w"
 		 -->
 		<View android:id="@+id/ProgressBar"  
 			android:layout_width="76dp"  android:layout_height="76dp" 
@@ -31,21 +31,21 @@
 		<!--  Images with GPL licence, from http://commons.wikimedia.org -->
 		<ImageView android:src="@drawable/help_48"
 			android:id="@+id/help"
-			android:layout_width="40dp" android:layout_height="40dp"
+			android:layout_width="38dp" android:layout_height="38dp"
 			android:layout_gravity="top|right"
-			android:layout_marginRight="5dp" android:layout_marginTop="6dp" 
+			android:layout_marginRight="4dp" android:layout_marginTop="5dp" 
 			/>
 		<ImageView android:src="@drawable/torchlight_viewmag_plus"
 			android:id="@+id/plus"
-			android:layout_width="40dp" android:layout_height="40dp"
+			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_gravity="top|left"
-			android:layout_marginLeft="6dp" android:layout_marginTop="6dp" 
+			android:layout_marginLeft="5dp" android:layout_marginTop="5dp" 
 			/>
 		<ImageView android:src="@drawable/torchlight_viewmag_minus"
 			android:id="@+id/minus"
-			android:layout_width="40dp" android:layout_height="40dp"
+			android:layout_width="36dp" android:layout_height="36dp"
 			android:layout_gravity="top|left"
-			android:layout_marginLeft="6dp" android:layout_marginTop="54dp" 
+			android:layout_marginLeft="5dp" android:layout_marginTop="48dp" 
 			/>
 		<ImageView 
 			android:layout_width="120dp" android:layout_height="28dp"
