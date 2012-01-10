@@ -31,7 +31,7 @@ public class InitNetwork implements CommandWithInt {
 
 	@Override
 	public void execute(int id) {
-		Log.d(tag, ""+ id + "  ***************************************************************************************");
+		Log.d(tag, ""+ id + "******* init network : " + id);
 		switch ( id) {
 		case 35: new InitRennes().execute(); break;
 		case 59: new InitLille().execute(); break;

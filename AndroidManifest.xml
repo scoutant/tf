@@ -12,15 +12,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 
-		<activity android:name="Settings" android:label="Paramètres" android:screenOrientation="portrait"/>
-         -->
 		<activity android:name="Help" android:label="Aide" />
     </application>
     <uses-sdk android:minSdkVersion="8" />
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
-<!-- TODO
-night mode
-portrait mode 
+<!-- TODO see below :
+- Night mode : overlay line in night mode + sun/moon icons
+- App Rater with nice UI : not asking again those who has voted...
+- README.md instead of README
+- new screenshots
+- if network goes down, how to indicate data are out-dated?
+- widget/notification status?
  -->

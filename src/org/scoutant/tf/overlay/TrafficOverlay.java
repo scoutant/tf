@@ -22,6 +22,7 @@ import org.scoutant.tf.model.Road;
 import org.scoutant.tf.util.ColorUtil;
 import org.scoutant.tf.util.MapUtils;
 
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -43,13 +44,15 @@ public class TrafficOverlay extends Overlay {
 	private static final String tag = "overlay";
 
 	private Paint paint = new Paint();
+	private SharedPreferences prefs;
 
-	public TrafficOverlay() {
+	public TrafficOverlay(SharedPreferences prefs) {
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(4.5f);
 		paint.setColor( Color.MAGENTA);
 		paint.setAntiAlias(true);
 		paint.setStrokeCap(Cap.ROUND);
+		this.prefs = prefs;
 	}
 
 	private void drawTraffic(Canvas canvas, MapView map) {
@@ -63,7 +66,9 @@ public class TrafficOverlay extends Overlay {
 				try {
 					drawPolyline(canvas, map, road.polyline);
 				} catch (ConcurrentModificationException e) {
-					Log.e(tag, "************************ Concurent modification exception : skipping road : " + road.name );
+					Log.e(tag, "**** Concurent modification exception : skipping road : " + road.name );
+				} catch (Exception e) {
+					Log.e(tag, "ERROR : meeting report 2011/12/16");
 				}
 			}
 		} catch (ConcurrentModificationException e) {
@@ -93,12 +98,15 @@ public class TrafficOverlay extends Overlay {
 						lastOnAxis = new Point(p);
 						p.offset(o.x, o.y);
 						if (f.color != 0 && f.color != -1) {
-							color= ColorUtil.color(f.color);
+							color = ColorUtil.color(f.color);
 //							if (color == Color.BLACK)
 						}
 						if (color == Color.BLACK) color = ColorUtil.GRAY;
 						paint.setColor( color);
 						if (last!=null) { 
+							if (isNight()) { 
+								paint.setAlpha(156);
+							}
 							canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 //							Log.d(tag, ""+last.x+","+last.y+" - " + p.x +","+p.y+ " : " + ColorUtil.toRGB( paint));
 						}
@@ -108,7 +116,6 @@ public class TrafficOverlay extends Overlay {
 			}
 		}
 	}
-	
 	
 	@Override
 	public void draw(Canvas canvas, MapView mapView, boolean shadow) {
@@ -122,5 +129,8 @@ public class TrafficOverlay extends Overlay {
 		if (mapView.getZoomLevel()<18)
 			mapView.getController().zoomIn();
 		return super.onTap(p, mapView);
+	}
+	private boolean isNight() {
+		return prefs.getBoolean( NightOverlay.KEY, false); 
 	}
 }
