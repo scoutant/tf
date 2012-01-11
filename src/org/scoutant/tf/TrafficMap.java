@@ -46,6 +46,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -156,10 +159,10 @@ public class TrafficMap extends MapActivity {
 			return;
         }
         spinner.setSelection( preferred());
-        // TODO : let the spinner visible on resume and then launch an animation to hide it...  
-        spinner.setVisibility( isNight() ? View.GONE : View.VISIBLE);
+        // workaround the spinner autofire : so we start with the spinner always visible and then animate a fade out when requirements met. 
+        spinner.setVisibility( View.VISIBLE);
         if (spinner.getOnItemSelectedListener()==null) {
-        	// setting the listener launches it!
+        	// setting the listener launches it! And the listener actually get set when spinner is displayed...
 	        spinner.setOnItemSelectedListener( new OnItemSelectedListener() {
 				@Override
 	            public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
@@ -182,6 +185,22 @@ public class TrafficMap extends MapActivity {
         ((ImageView) findViewById(R.id.plus)).setAlpha( isNight() ? ALPHA/4 : ALPHA );
         ((ImageView) findViewById(R.id.minus)).setAlpha(isNight() ? ALPHA/4 : ALPHA );
         ((ImageView) findViewById(R.id.trafic_fute)).setAlpha(isNight() ? 127 : 255 );
+
+		// The spinner auto-fire workaround 
+		Animation animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+		animation.setDuration(1500);
+	    animation.setAnimationListener(new AnimationListener() {
+	    	public void onAnimationEnd(Animation animation) {
+	    	spinner.setVisibility(View.GONE);
+	    	}
+	    	public void onAnimationRepeat(Animation animation) {
+	    	}
+	    	public void onAnimationStart(Animation animation) {
+	    	}
+	    });
+	    if (!isSpinnerToBeDisplayed()) {
+	    	spinner.startAnimation(animation);
+	    }
 	} 
 	  
 	@Override
@@ -304,7 +323,11 @@ public class TrafficMap extends MapActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
     	super.onConfigurationChanged(newConfig);
-    	spinner.setVisibility( isTabletOrSmartphoneAsPortrait() && !isNight() ? View.VISIBLE  : View.GONE);
+    	spinner.setVisibility( isSpinnerToBeDisplayed() ? View.VISIBLE  : View.GONE);
+    }
+    
+    private boolean isSpinnerToBeDisplayed() {
+    	return isTabletOrSmartphoneAsPortrait() && !isNight();
     }
     
     private boolean isTabletOrSmartphoneAsPortrait() {
