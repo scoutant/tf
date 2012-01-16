@@ -28,24 +28,25 @@ public class Init implements Command {
 	@Override
 	public void execute() {
 		Log.d(tag, "init Country...");
-		country.add( new Network("Toulouse", 0, 31, 13, 43.604, 1.447)
+		country.add( new Network("Marseille", 0, 13, 12, 43.3477, 5.453)
+			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille"));
+		country.add( new Network("Toulouse", 1, 31, 13, 43.604, 1.447)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse"));
-		country.add( new Network("Bordeaux", 1, 33, 13, 44.8375, -0.5795)
+		country.add( new Network("Bordeaux", 2, 33, 13, 44.8375, -0.5795)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux"));
-		country.add( new Network("Rennes", 2, 35, 13, 48.1086, -1.663)
+		country.add( new Network("Rennes", 3, 35, 13, 48.1086, -1.663)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_dor_breizh&source1=cir&raster=rennes"));
-		country.add( new Network("Grenoble", 3, 38, 13, 45.1794, 5.7316)
+		country.add( new Network("Grenoble", 4, 38, 13, 45.1794, 5.7316)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_grenoble&source1=cir&raster=grenoble"));
-		country.add( new Network("Lille", 4, 59, 12, 50.6434, 3.044)
+		country.add( new Network("Lille", 5, 59, 12, 50.6434, 3.044)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_allegro&source1=cir&raster=lille"));
-		country.add( new Network("Strasbourg", 5, 67, 13, 48.567, 7.746)
+		country.add( new Network("Strasbourg", 6, 67, 13, 48.567, 7.746)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_gutenberg&source1=cir&raster=strasbourg"));
-		country.add( new Network("Lyon", 6, 69, 12, 45.763, 4.91)
+		country.add( new Network("Lyon", 7, 69, 12, 45.763, 4.91)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_coraly&source1=cir&raster=lyon"));
-		// Bison Futé integrates data from Sytadin:
-		country.add( new Network("Paris, IdF", 7, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
+		// Bison Futé integrates data from Sytadin, for Ile de France:
+		country.add( new Network("Paris, IdF", 8, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
 
-		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_nantes&source1=cir&raster=nantes
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulon&source1=cir&raster=toulon
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_stetienne&source1=cir&raster=stetienne

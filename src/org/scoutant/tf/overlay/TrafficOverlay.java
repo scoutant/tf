@@ -105,7 +105,7 @@ public class TrafficOverlay extends Overlay {
 						paint.setColor( color);
 						if (last!=null) { 
 							if (isNight()) { 
-								paint.setAlpha(156);
+								paint.setAlpha(180);
 							}
 							canvas.drawLine(last.x, last.y, p.x, p.y, paint);
 //							Log.d(tag, ""+last.x+","+last.y+" - " + p.x +","+p.y+ " : " + ColorUtil.toRGB( paint));

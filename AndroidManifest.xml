@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.scoutant.tf"
       android:versionCode="4" android:versionName="1.3">
-    <!-- author stephane coutant, licence GPLv3 -->
+    <!-- author stephane coutant, licence GPL v3 -->
     <application android:icon="@drawable/tf_3d_128" android:label="Trafic Fute"
     	android:debuggable="true" >
     	<uses-library android:name="com.google.android.maps" />
@@ -18,10 +18,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
 <!-- TODO see below :
-- Night mode : overlay line in night mode + sun/moon icons
+- Night mode : sun/moon icons
 - App Rater with nice UI : not asking again those who has voted...
 - README.md instead of README
 - new screenshots
 - if network goes down, how to indicate data are out-dated?
-- widget/notification status?
+- toggle googlemaps api key scoutant.org / debug  
  -->

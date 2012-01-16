@@ -82,7 +82,6 @@ public class TrafficMap extends MapActivity {
 	private Toast toast;
 	private Display display;
 	private Editor editor;
-	private boolean initDone=false;
 	public static final int ALPHA=146;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,6 +129,7 @@ public class TrafficMap extends MapActivity {
     	toast.setView( getLayoutInflater().inflate(R.layout.wellcome_toast, (ViewGroup) findViewById(R.id.toast)));
     	toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 200);
     	toast.setDuration(Toast.LENGTH_SHORT);
+		showToast(null);
     	
 		AppRater.app_launched( this);
 		
@@ -143,8 +143,6 @@ public class TrafficMap extends MapActivity {
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		int mode = (isNight() ? WindowManager.LayoutParams.FLAG_FULLSCREEN : WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, mode);
-		
-		showToast(null);
         if (isAirplaneModeOn(this)) {
         	// TODO suggest to get directly to that setting screen?
 			new AlertDialog.Builder(this)
@@ -188,7 +186,7 @@ public class TrafficMap extends MapActivity {
 
 		// The spinner auto-fire workaround 
 		Animation animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
-		animation.setDuration(1500);
+		animation.setDuration(1000);
 	    animation.setAnimationListener(new AnimationListener() {
 	    	public void onAnimationEnd(Animation animation) {
 	    	spinner.setVisibility(View.GONE);
