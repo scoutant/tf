@@ -13,6 +13,7 @@
 package org.scoutant.tf.command;
 
 import org.scoutant.tf.command.network.InitLille;
+import org.scoutant.tf.command.network.InitMarseille;
 import org.scoutant.tf.command.network.InitRennes;
 import org.scoutant.tf.model.Country;
 import org.scoutant.tf.model.Model;
@@ -33,6 +34,7 @@ public class InitNetwork implements CommandWithInt {
 	public void execute(int id) {
 		Log.d(tag, ""+ id + "******* init network : " + id);
 		switch ( id) {
+		case 13: new InitMarseille().execute(); break;
 		case 35: new InitRennes().execute(); break;
 		case 59: new InitLille().execute(); break;
 		case 69:

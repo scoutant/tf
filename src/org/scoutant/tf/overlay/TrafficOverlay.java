@@ -130,6 +130,7 @@ public class TrafficOverlay extends Overlay {
 			mapView.getController().zoomIn();
 		return super.onTap(p, mapView);
 	}
+	
 	private boolean isNight() {
 		return prefs.getBoolean( NightOverlay.KEY, false); 
 	}

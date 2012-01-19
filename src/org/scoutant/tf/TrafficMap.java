@@ -95,6 +95,14 @@ public class TrafficMap extends MapActivity {
 				mapController.zoomOut();
 			}
 		});
+//        findViewById(R.id.plus).setOnClickListener( new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (mapView.getZoomLevel()<18) {
+//					mapController.zoomIn();
+//				}
+//			}
+//		});
         findViewById(R.id.help).setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -226,14 +234,14 @@ public class TrafficMap extends MapActivity {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.clear();
-		menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "Aide").setIcon( R.drawable.help_48);
 		boolean isNight = prefs.getBoolean( NightOverlay.KEY, false);
 		if (isNight) {
-			menu.add(Menu.NONE, MENU_DAY, Menu.NONE, "mode normal").setIcon( R.drawable.help_48);			
+			menu.add(Menu.NONE, MENU_DAY, Menu.NONE, "mode normal").setIcon( R.drawable.sun_48);			
 		} else {
-			menu.add(Menu.NONE, MENU_NIGHT, Menu.NONE, "mode nuit").setIcon( R.drawable.help_48);
+			menu.add(Menu.NONE, MENU_HELP, Menu.NONE, "aide").setIcon( R.drawable.help_48);
+			menu.add(Menu.NONE, MENU_NIGHT, Menu.NONE, "mode nuit").setIcon( R.drawable.dark2_48);
+			menu.add(Menu.NONE, MENU_VOTE, Menu.NONE, "votre avis").setIcon( R.drawable.love_48);
 		}
-		menu.add(Menu.NONE, MENU_VOTE, Menu.NONE, "votre avis").setIcon( R.drawable.love_48);
 		return true;
 	}
 	
