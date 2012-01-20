@@ -28,7 +28,7 @@ public class Init implements Command {
 	@Override
 	public void execute() {
 		Log.d(tag, "init Country...");
-		country.add( new Network("Marseille", 0, 13, 12, 43.3477, 5.453)
+		country.add( new Network("Marseille", 0, 13, 13, 43.3482, 5.3673) 
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_marseille&source1=cir&raster=marseille"));
 		country.add( new Network("Toulouse", 1, 31, 13, 43.604, 1.447)
 			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulouse&source1=cir&raster=toulouse"));

@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.scoutant.tf"
       android:versionCode="4" android:versionName="1.3">
-    <!-- author stephane coutant, licence GPL v3 -->
     <application android:icon="@drawable/car_gears" android:label="Trafic Fute"
     	android:debuggable="true" >
-    	<!--  tf_3d_128 -->
     	<uses-library android:name="com.google.android.maps" />
         <activity android:name="TrafficMap" android:label="Trafic Futé" android:theme="@android:style/Theme.NoTitleBar" android:configChanges="orientation" >
             <intent-filter>
@@ -17,12 +15,8 @@
     </application>
     <uses-sdk android:minSdkVersion="8" />
     <uses-permission android:name="android.permission.INTERNET" />
+	<uses-feature android:name="android.hardware.touchscreen" android:required="true"/>
+	<supports-screens android:smallScreens="false" android:normalScreens="true" android:largeScreens="true" />
 </manifest>
-<!-- TODO see below :
-- App Rater with nice UI : custom dialog !
-- README.md instead of README
-- double tap on map : GestureDetector
-- new screenshots
-- if network goes down, how to indicate data are out-dated?
-- toggle googlemaps api key scoutant.org / debug  
- -->
+<!-- TODO toggle googlemaps api key scoutant.org / debug -->
+<!-- TODO if network goes down, how to indicate data are out-dated? -->

@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="city_prompt">Aller directement à </string>
-
-    <!-- rate form -->
-	<string name="if_you_enjoy">Evaluer Trafic Futé. Aidez nous a améliorer Trafic Futé, en prenant un instant pour vote, voire un commentaire. Merci pour votre aide!</string>
-	<string name="rate">Evaluer Trafic Futé</string>
-	<string name="remind_me">Me rappeler plus tard</string>
-	<string name="no_thansk">Non merci</string>
-
 </resources>
