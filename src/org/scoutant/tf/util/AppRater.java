@@ -38,7 +38,7 @@ public class AppRater {
                 showRate(context, editor);
             }
         }
-        
+
         editor.commit();
     }   
     
@@ -49,7 +49,7 @@ public class AppRater {
 		.setCancelable(true)
 		.setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-                editor.putBoolean("dontshowagain", true);
+                editor.putBoolean("dontshowagain", true).commit();
                 context.startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
                 }
 			})
@@ -59,11 +59,10 @@ public class AppRater {
 			})
 		.setNegativeButton( "Annuler", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-                    editor.putBoolean("dontshowagain", true);
+                    editor.putBoolean("dontshowagain", true).commit();
 				}
 			})
 		.create()
 		.show();		
-        editor.commit();
     }
 }

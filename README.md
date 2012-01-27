@@ -2,6 +2,7 @@
 
 a traffic information application, targetting cities in France. Below in French...
 
+![paris](http://trafic-fute.scoutant.org/paris-day.png)
 
 ---
 
@@ -60,7 +61,7 @@ Donc vous êtes libres de télécharger le code source et de l'adapter à vos be
 
 Vous pouvez signaler des bugs ou émettre des suggestions à l'adresse : http://github.com/scoutant/tf/issues
 
-Stephane Coutant, [scoutant.org](http://scoutant.org)
+Stephane Coutant, http://scoutant.org
 
 # Changelog :
 
