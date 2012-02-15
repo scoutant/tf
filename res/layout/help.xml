@@ -3,23 +3,25 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	>
 	<LinearLayout 
-		android:layout_width="fill_parent" android:layout_height="fill_parent" 
+		android:layout_width="fill_parent" android:layout_height="wrap_content" 
 		android:orientation="vertical" 
 		>
-		<ImageView android:src="@drawable/car_gears" 
-			android:layout_width="160px" android:layout_height="160px"
-			android:layout_marginTop="10px"  
+		<ImageView android:src="@drawable/idf_256_125" 
+			android:layout_width="256dp" android:layout_height="125dp"
+			android:layout_marginTop="6dp"  
 			android:layout_gravity="center_horizontal"
+			android:contentDescription="Trafic Futé icon"
 			/>
 		<ImageView android:src="@drawable/trafic_fute_large" 
-			android:layout_marginTop="10px"  
+			android:layout_marginTop="6dp"  
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:scaleType="centerInside"
+			android:contentDescription="Trafic Futé title"
 			/>
 		<TextView android:text="L'info trafic sur une carte Google Map!"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="L'info frafic directement présentée dans une carte Google Maps, pour une grande partie des villes françaises." 
 			/>	 		
@@ -56,15 +58,17 @@
 
 		<TextView android:text="Couverture du réseau routier..."
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Une partie des grandes villes sont convertes : " 
 			/>	 		
 		<TextView android:text="- 13, Marseille " android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
+		<TextView android:text="- 14, Caen " android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 31, Toulouse" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 33, Bordeaux" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 35, Rennes" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 38, Grenoble" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
+		<TextView android:text="- 44, Nantes" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 59, Lille" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 67, Strasbourg" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
 		<TextView android:text="- 69, Lyon" android:layout_width="fill_parent" android:layout_height="wrap_content"	/>	 		
@@ -75,7 +79,7 @@
 
 		<TextView android:text="Il n'y a pas tous les grands axes de ma ville..."
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Oui, certains axes importants ne sont pas tracés, par exemple à Toulouse." 
 			/>	 		
@@ -85,7 +89,7 @@
 
 		<TextView android:text="Trafic Futé vs Google Maps + option Trafic"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Vous avez sans doutes déjà utilisé l'application Maps de Google sur votre téléphone Android. Il est possible d'avoir l'Info trafic." 
 			/>	 		
@@ -101,14 +105,14 @@
 
 		<TextView android:text="Mode nuit"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Pour être moins ébloui la nuit, dans la voiture, cochez le mode nuit. Cela économise également votre batterie. " 
 			/>	 		
 
 		<TextView android:text="Logiciel libre, open-source"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="L'application Trafic Futé est gratuite et épurée de toute publicité." 
@@ -119,7 +123,7 @@
 
 		<TextView android:text="Contacts"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
-			android:layout_marginTop="16px" style="@style/h1" />	 		
+			android:layout_marginTop="10dp" style="@style/h1" />	 		
 
 		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"	
 			android:text="Vous pouvez signaler des bugs ou émettre des suggestions à l'adresse : http://github.com/scoutant/tf/issues." 

@@ -2,10 +2,12 @@
 <resources>
   <string-array name="cityNames">
     <item>13 - Marseille</item>
+    <item>14 - Caen</item>
     <item>31 - Toulouse</item>
     <item>33 - Bordeaux</item>
     <item>35 - Rennes</item>
     <item>38 - Grenoble</item>
+    <item>44 - Nantes</item>
     <item>59 - Lille</item>
     <item>67 - Strasbourg</item>
     <item>69 - Lyon</item>
@@ -21,6 +23,8 @@
     <item>6</item>
     <item>7</item>
     <item>8</item>
+    <item>9</item>
+    <item>10</item>
   </string-array>
 </resources>
   

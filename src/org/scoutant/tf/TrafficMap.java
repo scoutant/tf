@@ -283,8 +283,8 @@ public class TrafficMap extends MapActivity {
 	}
 	
 	public int preferred() {
-		// Rennes, as n°2 in list arrays.xml, to be default...
-		return new Integer( prefs.getString("city", "2"));
+		// Bordeaux, as n°3 in list arrays.xml, to be default...
+		return new Integer( prefs.getString("city", "3"));
 	}
 	
 	public void saveSelected(int id) {

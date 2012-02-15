@@ -1,8 +1,8 @@
+![paris](http://trafic-fute.scoutant.org/paris-day.png)
+
 # Trafic Futé 
 
 a traffic information application, targetting cities in France. Below in French...
-
-![paris](http://trafic-fute.scoutant.org/paris-day.png)
 
 ---
 
@@ -10,7 +10,7 @@ a traffic information application, targetting cities in France. Below in French.
 
 Trafic Futé vous permet de consulter l'état de la circulation en un seul clic.
 Avec une interface de cartographie agréable : une **vraie** carte Google Maps, dans laquelle sont insérées les données de Bison Futé.
-Vous pouvez zoomer et vous déplacer à votre guise.
+Vous pouvez zoomer et vous déplacer à votre guise. Info trafic temps réel issu de diffusion-numerique.info-routiere.gouv.fr.
 
 - Mare de perdre du temps dans les bouchons?
 - Frustrés de pas pouvoir naviguer dans les cartes schématiques de Bison Futé?
@@ -27,9 +27,11 @@ Les données sont collectées automatiquement sur le terrain et publiées dans l
 Pour l'instant, cette application présente le trafic pour les villes suivantes :
 
 - 13 - Marseille,
+- 14 - Caen
 - 31 - Toulouse,
 - 33 - Bordeaux,
 - 38 - Grenoble,
+- 44 - Nantes
 - 59 - Lille,
 - 67 - Strasbourg,
 - 69 - Lyon,
@@ -64,6 +66,13 @@ Vous pouvez signaler des bugs ou émettre des suggestions à l'adresse : http://
 Stephane Coutant, http://scoutant.org
 
 # Changelog :
+
+## v1.4 2012/02
+- ajout de Nantes
+- ajout de Caen, merci à Olivier Bagot
+
+## v1.3.1 2012/01
+Fix AppRater
 
 ## v1.3 2012/01
 - Bascule automatique portrait / paysage.
