@@ -51,7 +51,8 @@ public class Init implements Command {
 //		country.add( new Network("Savoie", 10, 73, 11, 45.545793,6.148109)
 //			.set("http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_osiris&source1=cir&raster=osiris"));
 		// Bison Futé integrates data from Sytadin, for Ile de France:
-		country.add( new Network("Paris, IdF", 10, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
+//		country.add( new Network("Paris, IdF", 10, 75, 12, 48.855, 2.33).set("http://www.sytadin.fr/raster/segment_IDF.gif"));
+		country.add( new Network("Paris, IdF", 10, 75, 12, 48.855, 2.33).set("http://www.sytadin.developpement-durable.gouv.fr/raster/segment_IDF.gif"));
 
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_toulon&source1=cir&raster=toulon
 		// http://www.bison-fute.equipement.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_stetienne&source1=cir&raster=stetienne
